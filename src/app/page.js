@@ -1,4 +1,4 @@
-import LoadingContainer from './components/LoadingContainer'
+import LoadingContainer from './components/loading/LoadingContainer'
 
 export default function Home(){
   
@@ -8,7 +8,7 @@ export default function Home(){
         <div className={homeClass}>
 
             <LoadingContainer />
-            
+
         </div>
     )
 }
