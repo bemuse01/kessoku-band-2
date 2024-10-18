@@ -3,7 +3,11 @@ import { motion } from 'framer-motion'
 const LoadingBox = () => {
     // loading box
     const parentSize = 200
-    const loadBoxClass = `loading-box w-[${parentSize}px] h-[${parentSize}px]`
+    const loadBoxClass = 'loading-box'
+    const loadBoxStyle = {
+        width: `${parentSize}px`,
+        height: `${parentSize}px`
+    }
 
 
     // loading animation
@@ -19,7 +23,7 @@ const LoadingBox = () => {
         const light = 85 - 85 / len * (len - i)
 
         const key = i
-        const className = `loading-child absolute`
+        const className = 'loading-child absolute'
         const style = {
             width: `${childSize}px`,
             height: `${childSize}px`,
@@ -63,6 +67,7 @@ const LoadingBox = () => {
     return(
         <div 
             className={loadBoxClass}
+            style={loadBoxStyle}
         >
 
             <div 
