@@ -1,7 +1,12 @@
 
 
 const PlayerBox = ({children}) => {
-    const PlayerBoxClass = 'w-[540px] h-[540px] bg-black'
+    const PlayerBoxClass = [
+        'w-[500px] max-lg:w-[400px] max-md:w-[320px]',
+        'rounded-[10px]',
+        'aspect-square',
+        'bg-black'
+    ].join(' ')
 
     return(
         <div

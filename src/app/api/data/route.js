@@ -1,5 +1,5 @@
 import axios from 'axios'
-import ENDPOINTS from '@/cofig/urls'
+import ENDPOINTS from '@/config/urls'
 import { NextResponse } from 'next/server'
 
 export async function GET(req){
