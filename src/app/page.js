@@ -1,47 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useDataStore from '@/store/dataStore'
-import LoadingContainer from './components/loading/LoadingContainer'
 import useData from '@/swr/dataSwr'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
-
-
-const AnimLoading = ({isLoading}) => {
-    const variants = {
-        initial: {
-            opacity: 1,
-        },
-        hidden: {
-            opacity: 0,
-            transition: {
-                duration: 0.3,
-                delay: 1
-            }
-        },
-    }
-
-    return(
-        <AnimatePresence>
-            
-            {isLoading && (
-
-                <motion.div
-                    initial="initial"
-                    exit="hidden"
-                    variants={variants}
-                >
-
-                    <LoadingContainer />
-
-                </motion.div>
-
-            )}
-
-        </AnimatePresence>
-    )
-}
+import LoadingContainer from './components/loading/LoadingContainer'
+import PlayerContainer from './components/player/PlayerContainer'
 
 
 const Home = () => {
@@ -81,8 +44,11 @@ const Home = () => {
     return(
         <div className={homeClass}>
 
+            {/* player */}
+            <PlayerContainer />
+
             {/* loading */}
-            <AnimLoading isLoading={isLoading}/>
+            <LoadingContainer isLoading={isLoading} />
      
         </div>
     )

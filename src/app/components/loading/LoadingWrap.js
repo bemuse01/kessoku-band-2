@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion'
 
-const LoadingBox = () => {
+const LoadingWrap = () => {
+    // loading wrap 
+    const loadWrapClass = 'loading-wrap w-full h-full flex justify-center items-center'
+
+
     // loading box
     const parentSize = 200
     const loadBoxClass = 'loading-box'
@@ -65,16 +69,22 @@ const LoadingBox = () => {
 
     // render
     return(
-        <div 
-            className={loadBoxClass}
-            style={loadBoxStyle}
+        <div
+            className={loadWrapClass}
         >
 
             <div 
-                className={loadParentClass}
+                className={loadBoxClass}
+                style={loadBoxStyle}
             >
 
-                {loadChildsComp}
+                <div 
+                    className={loadParentClass}
+                >
+
+                    {loadChildsComp}
+
+                </div>
 
             </div>
 
@@ -82,4 +92,4 @@ const LoadingBox = () => {
     )
 }
 
-export default LoadingBox
+export default LoadingWrap

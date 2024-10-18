@@ -1,23 +1,42 @@
 "use client"
 
-import LoadingBox from './LoadingBox'
+import LoadingWrap from './LoadingWrap'
+import { AnimatePresence, motion } from 'framer-motion'
 
-const LoadingContainer = () => {
+const LoadingContainer = ({isLoading}) => {
 
     const loadContClass = 'loading-container w-screen h-screen absolute bg-white'
 
-    const loadWrapClass = 'loading-wrap w-full h-full flex justify-center items-center'
+    const variants = {
+        initial: {
+            opacity: 1,
+        },
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 0.5,
+                delay: 1
+            }
+        },
+    }
 
     return(
-        <div className={loadContClass}>
+        <AnimatePresence>
 
-            <div className={loadWrapClass}>
+            {isLoading && (
+                <motion.div
+                    className={loadContClass}
+                    initial="initial"
+                    exit="hidden"
+                    variants={variants}
+                >
 
-                <LoadingBox />
+                    <LoadingWrap />
 
-            </div>
+                </motion.div>
+            )}
 
-        </div>
+        </AnimatePresence>
     )
 }
 
