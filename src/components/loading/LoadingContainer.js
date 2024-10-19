@@ -3,9 +3,15 @@
 import LoadingWrap from './LoadingWrap'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const LoadingContainer = ({isLoading}) => {
+const LoadingContainer = ({isLoading, size, delay, reverse, opactity, styleConfig = {}}) => {
 
-    const loadContClass = 'loading-container w-screen h-screen absolute bg-white'
+    const color = reverse ? 0 : 255
+    const o = opactity || 1
+    const loadContClass = 'loading-container w-full h-full absolute'
+    const loadContStyle = {
+        ...styleConfig,
+        background: `rgba(${color}, ${color}, ${color}, ${o})`
+    }
 
     const variants = {
         initial: {
@@ -15,7 +21,7 @@ const LoadingContainer = ({isLoading}) => {
             opacity: 0,
             transition: {
                 duration: 0.3,
-                delay: 1
+                delay: delay || 0
             }
         },
     }
@@ -26,12 +32,13 @@ const LoadingContainer = ({isLoading}) => {
             {isLoading && (
                 <motion.div
                     className={loadContClass}
+                    style={loadContStyle}
                     initial="initial"
                     exit="hidden"
                     variants={variants}
                 >
 
-                    <LoadingWrap />
+                    <LoadingWrap size={size} reverse={reverse} />
 
                 </motion.div>
             )}

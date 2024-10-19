@@ -1,4 +1,6 @@
 import PlayerBox from './PlayerBox'
+import LoadingContainer from '@/components/loading/LoadingContainer'
+import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const PlayerContainer = () => {
@@ -10,7 +12,14 @@ const PlayerContainer = () => {
         >
             
             <PlayerBox>
-                <div></div>
+
+                {/* <LoadingContainer 
+                    isLoading={true} 
+                    reverse={true} 
+                    opactity={0.6} 
+                    styleConfig={{borderRadius: `${PLAYER_BORDER_VALUE}px`}}
+                /> */}
+
             </PlayerBox>
 
         </div>

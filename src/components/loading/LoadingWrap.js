@@ -1,17 +1,17 @@
-import { motion } from 'framer-motion'
+import { motion, cubicBezier } from 'framer-motion'
+import { easeInOutQuint, easeInOutCubic } from '@/config/easing'
 
-const LoadingWrap = () => {
+const LoadingWrap = ({reverse}) => {
     // loading wrap 
     const loadWrapClass = 'loading-wrap w-full h-full flex justify-center items-center'
 
 
     // loading box
-    const parentSize = 200
-    const loadBoxClass = 'loading-box'
-    const loadBoxStyle = {
-        width: `${parentSize}px`,
-        height: `${parentSize}px`
-    }
+    const loadBoxClass = [
+        'loading-box',
+        'w-[200px] max-lg:w-[180px] max-md:w-[160px]',
+        'aspect-square'
+    ].join(' ')
 
 
     // loading animation
@@ -19,51 +19,52 @@ const LoadingWrap = () => {
     const loadParentClass = 'loading-parent w-full h-full relative overflow-hidden'
 
     // loading chils
-    const childSize = 30
-    const loadChildCount = 5
+    const loadChildCount = 6
+    const color = reverse ? 255 : 0
     const loadChilds = Array.from({length: loadChildCount}, (_, i) => {
 
         const len = loadChildCount - 1
-        const light = 85 - 85 / len * (len - i)
+        const opacity = 1 - (0.8 / len) * i
 
         const key = i
-        const className = 'loading-child absolute'
+        const childClass = 'loading-child w-full h-full absolute flex justify-center items-center'
+        const elClass = 'loading-child-el absolute w-[14px] h-[14px] rounded-full'
         const style = {
-            width: `${childSize}px`,
-            height: `${childSize}px`,
-            background: `hsl(0, 0%, ${light}%)`,
-            top: '50%',
-            // transform: 'translate(0, -50%) rotate(0deg)',
-            zIndex: loadChildCount - i,
+            top: '0',
+            background: `rgba(${color}, ${color}, ${color}, ${opacity})`,
         }
 
-        return {key, className, style}
+        return {key, childClass, elClass, style}
     })
     const loadChildVar = {
         hidden: {
-            transform: `translate(-${childSize}px, -50%) rotate(0deg)`,
+            transform: `rotate(0deg)`,
         },
         visible: i => ({
-            transform: `translate(${parentSize}px, -50%) rotate(180deg)`,
+            transform: `rotate(360deg)`,
             transition: {
-                delay: 0.08 * i,
-                duration: 1,
+                delay: 0.05 * i,
+                duration: 2,
                 repeat: Infinity,
-                repeatDelay: 0.5,
-                ease: 'easeInOut'
+                // repeatDelay: 0.5,
+                ease: cubicBezier(...easeInOutQuint)
             }
         }),
     }
     const loadChildsComp = loadChilds.map((child, i) =>
         <motion.div 
             key={child.key}
-            className={child.className}
-            style={child.style}
+            className={child.childClass}
             custom={i}
             initial='hidden'
             animate='visible'
             variants={loadChildVar}
-        />
+        >
+            <span
+                className={child.elClass}
+                style={child.style}
+            ></span>
+        </motion.div>
     )
 
 
@@ -75,7 +76,6 @@ const LoadingWrap = () => {
 
             <div 
                 className={loadBoxClass}
-                style={loadBoxStyle}
             >
 
                 <div 

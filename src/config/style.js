@@ -1,0 +1,3 @@
+const PLAYER_BORDER_VALUE = 10
+
+export {PLAYER_BORDER_VALUE}

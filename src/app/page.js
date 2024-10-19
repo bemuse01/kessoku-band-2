@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import useDataStore from '@/store/dataStore'
 import useData from '@/swr/dataSwr'
-import LoadingContainer from './components/loading/LoadingContainer'
+import LoadingContainer from '@/components/loading/LoadingContainer'
 import PlayerContainer from './components/player/PlayerContainer'
 
 
@@ -48,7 +48,7 @@ const Home = () => {
             <PlayerContainer />
 
             {/* loading */}
-            <LoadingContainer isLoading={isLoading} />
+            <LoadingContainer isLoading={isLoading} delay={1}/>
      
         </div>
     )
