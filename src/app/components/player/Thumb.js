@@ -55,6 +55,7 @@ const Thumb = () => {
     const data = useDataStore((state) => state.data)
     const index = useDataStore((state) => state.index)
     const idx = usePlayerStore((state) => state.idx)
+    const {setIdx} = usePlayerStore()
     const [isLoaded, setIsLoaded] = useState(false)
     const imgAnimClass = 'w-full h-full absolute'
     const imgClass = 'w-full h-full object-cover absolute'
@@ -63,13 +64,24 @@ const Thumb = () => {
         console.log('loaded')
         setIsLoaded(true)
     }
+
     useEffect(() => {
+        // when data and index loaded
         if(index !== null && data !== null){
             const id = index[idx]
             const url = data.find(i => i.id === id).thumbnail
             setUrl(url)
+            setTimeout(() => {
+                setIdx(1)
+            }, 5000);
         }
     }, [data, index, idx])
+
+    useEffect(() => {
+        // when current idx chenged
+        setIsLoaded(false)
+        console.log(idx)
+    }, [idx])
 
 
     return(
@@ -79,7 +91,7 @@ const Thumb = () => {
 
             <AnimatePresence>
 
-                {isLoaded && 
+                {!isLoaded && 
                     <Placeholder
                         key="0"
                         animClass={imgAnimClass} 
