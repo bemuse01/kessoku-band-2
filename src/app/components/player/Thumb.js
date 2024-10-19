@@ -71,16 +71,16 @@ const Thumb = () => {
             const id = index[idx]
             const url = data.find(i => i.id === id).thumbnail
             setUrl(url)
-            setTimeout(() => {
-                setIdx(1)
-            }, 5000);
+            // setTimeout(() => {
+            //     setIdx(1)
+            // }, 5000);
         }
     }, [data, index, idx])
 
     useEffect(() => {
         // when current idx chenged
         setIsLoaded(false)
-        console.log(idx)
+        // console.log(idx)
     }, [idx])
 
 
