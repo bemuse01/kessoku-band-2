@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const useDataStore = create((set, get) => ({
+const usePlayerStore = create((set, get) => ({
     isPlaying: false,
     idx: 0,
 
@@ -10,4 +10,4 @@ const useDataStore = create((set, get) => ({
     getIdx: () => get().idx,
 }))
 
-export default useDataStore
+export default usePlayerStore

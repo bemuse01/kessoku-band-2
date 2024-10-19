@@ -9,7 +9,7 @@ import PlayerContainer from './components/player/PlayerContainer'
 
 const Home = () => {
     // home
-    const homeClass = 'w-screen h-screen absolute'
+    const homeClass = 'app w-screen h-screen absolute'
 
 
     // data

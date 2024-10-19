@@ -1,10 +1,11 @@
 import PlayerBox from './PlayerBox'
+import ThumbWrap from './ThumbWrap'
 import LoadingContainer from '@/components/loading/LoadingContainer'
 import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const PlayerContainer = () => {
-    const PlayerContClass = 'w-screen h-screen absolute flex justify-center items-center'
+    const PlayerContClass = 'player-container w-screen h-screen absolute flex justify-center items-center'
 
     return(
         <div
@@ -12,6 +13,8 @@ const PlayerContainer = () => {
         >
             
             <PlayerBox>
+
+                <ThumbWrap />
 
                 {/* <LoadingContainer 
                     isLoading={true} 

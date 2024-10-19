@@ -8,6 +8,9 @@ const nextConfig = {
             },
         ];
     },
+    images: {
+        domains: ['github.com'], // GitHub 도메인 추가
+    },
 };
 
 export default nextConfig;
