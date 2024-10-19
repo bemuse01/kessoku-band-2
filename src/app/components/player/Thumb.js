@@ -78,7 +78,7 @@ const Thumb = () => {
     }, [data, index, idx])
 
     useEffect(() => {
-        // when current idx chenged
+        // when current idx changed
         setIsLoaded(false)
         // console.log(idx)
     }, [idx])
