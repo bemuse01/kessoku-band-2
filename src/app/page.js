@@ -27,18 +27,20 @@ const Home = () => {
     }
     const config = {
         refreshInterval: 0,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
         onSuccess: (data) => onSuccessFetchData(data)
     }
     const {} = useData(url, config)
 
 
     // life cycle hook
-    const onMounted = () => {
-        console.log('mounted')
-    }
-    useEffect(() => {
-        onMounted()
-    }, [])
+    // const onMounted = () => {
+    //     console.log('mounted')
+    // }
+    // useEffect(() => {
+    //     onMounted()
+    // }, [])
 
 
     return(

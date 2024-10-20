@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import LoadingImage from '@/public/images/loading.gif'
 import defaultThumb from '@/public/images/default.jpg'
 import Image from 'next/image'
+import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const ImageLoading = ({imgClass, animClass}) => {
@@ -41,7 +42,10 @@ const ImageReal = ({url, imgClass, onLoad}) => {
 }
 
 const ImageComp = ({url}) => {
-    const imageCompClass = 'image-comp w-full h-full relative'
+    const imageCompClass = 'image-comp w-full h-full overflow-hidden relative'
+    const imageCompStyle = {
+        borderRadius: `${PLAYER_BORDER_VALUE}px`,
+    }
 
     const isFirstRender = useRef({effect1: true})
 
@@ -68,6 +72,7 @@ const ImageComp = ({url}) => {
     return(
         <div
             className={imageCompClass}
+            style={imageCompStyle}
         >   
 
             <ImageReal

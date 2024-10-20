@@ -34,7 +34,7 @@ const Thumb = () => {
             const newUrl = data.find(i => i.id === id).thumbnail
             setUrl(newUrl)
 
-            console.log('url changed', url, oldUrl)
+            console.log('url changed', url, oldUrl, idx)
         }
     }, [data, index, idx])
 
