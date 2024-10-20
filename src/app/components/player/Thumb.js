@@ -1,87 +1,54 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import defaultThumb from '@/public/images/default.jpg'
+import { useState, useEffect, useRef } from 'react'
 import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
+import ImageComp from './ImageCOmp'
 
-
-const Placeholder = ({animClass, imgClass}) => {
-    return(
-        <motion.div
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={{duration: 0.3}}
-            className={animClass}
-        >
-            <Image
-                className={imgClass}
-                alt='placeholder'
-                src={defaultThumb}
-                priority={true}
-            />
-        </motion.div>
-    )
-}
-
-const Thumbnail = ({url, animClass, imgClass, onLoad}) => {
-    return(
-        <motion.div
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={{duration: 0.3}}
-            className={animClass}
-        >
-            <Image
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className={imgClass}
-                src={url}
-                alt='thumbnail'
-                priority={true}
-                onLoad={() => onLoad()}
-            />
-        </motion.div>
-    )
-}
 
 const Thumb = () => {
     const ThumbClass = 'thumb w-full h-full relative'
 
+    const isFirstRender = useRef({effect1: true, effect2: true})
 
     // image
     const data = useDataStore((state) => state.data)
     const index = useDataStore((state) => state.index)
     const idx = usePlayerStore((state) => state.idx)
-    const {setIdx} = usePlayerStore()
-    const [isLoaded, setIsLoaded] = useState(false)
-    const imgAnimClass = 'w-full h-full absolute'
-    const imgClass = 'w-full h-full object-cover absolute'
+    const {increaseIdx} = usePlayerStore()
+    const animClass = 'thumb-anim w-full h-full absolute'
     const [url, setUrl] = useState(null)
-    const onLoadImage = () => {
-        console.log('loaded')
-        setIsLoaded(true)
-    }
+    const [oldUrl, setOldUrl] = useState(null)
 
     useEffect(() => {
+        // prevent action when first render
+        if(isFirstRender.current.effect1){
+            isFirstRender.current.effect1 = false
+            return
+        }
+
         // when data and index loaded
         if(index !== null && data !== null){
+            setOldUrl(url)
+
             const id = index[idx]
-            const url = data.find(i => i.id === id).thumbnail
-            setUrl(url)
-            // setTimeout(() => {
-            //     setIdx(1)
-            // }, 5000);
+            const newUrl = data.find(i => i.id === id).thumbnail
+            setUrl(newUrl)
+
+            console.log('url changed', url, oldUrl)
         }
     }, [data, index, idx])
 
     useEffect(() => {
-        // when current idx changed
-        setIsLoaded(false)
-        // console.log(idx)
-    }, [idx])
+        if(isFirstRender.current.effect2){
+            isFirstRender.current.effect2 = false
+            return
+        }
+
+        window.addEventListener('click', () => {
+            increaseIdx()
+            console.log('work')
+        })
+    }, [])
 
 
     return(
@@ -90,23 +57,18 @@ const Thumb = () => {
         >   
 
             <AnimatePresence>
-
-                {!isLoaded && 
-                    <Placeholder
-                        key="0"
-                        animClass={imgAnimClass} 
-                        imgClass={imgClass} 
-                    /> 
-                }
             
-                {url && 
-                    <Thumbnail
-                        key="1"
-                        url={url} 
-                        animClass={imgAnimClass} 
-                        imgClass={imgClass} 
-                        onLoad={onLoadImage} 
-                    /> 
+                {url !== oldUrl && 
+                    <motion.div
+                        key={url}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.3}}
+                        className={animClass}
+                    >
+                        <ImageComp url={url} />
+                    </motion.div>
                 }
 
             </AnimatePresence>

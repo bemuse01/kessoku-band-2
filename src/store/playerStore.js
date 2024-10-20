@@ -7,7 +7,7 @@ const usePlayerStore = create((set, get) => ({
 
     // idx
     setIdx: (newIdx) => set(() => ({idx: newIdx})),
-    getIdx: () => get().idx,
+    increaseIdx: () => set((state) => ({idx: state.idx + 1}))
 }))
 
 export default usePlayerStore
