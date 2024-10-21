@@ -9,7 +9,7 @@ const ControlWrap = () => {
         'h-[35%]',
         'bottom-0',
         'overflow-hidden',
-        'bg-[#fafafa]'
+        'bg-white'
         // 'w-[500px] max-lg:w-[400px] max-md:w-[320px]',
     ].join(' ')
     const controlWrapStyle = {

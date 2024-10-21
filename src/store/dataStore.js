@@ -8,6 +8,7 @@ const useDataStore = create((set, get) => ({
 
     // data
     setData: (newData) => set(() => ({data: newData})),
+    getDataById: (id) => get().data.find(i => i.id === id),
 
 
     // index
