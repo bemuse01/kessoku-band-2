@@ -1,7 +1,8 @@
 import PlayerBox from './PlayerBox'
 import ThumbWrap from './ThumbWrap'
-import LoadingContainer from '@/components/loading/LoadingContainer'
-import { PLAYER_BORDER_VALUE } from '@/config/style'
+import ControlWrap from './ControlWrap'
+// import LoadingContainer from '@/components/loading/LoadingContainer'
+// import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const PlayerContainer = () => {
@@ -15,6 +16,8 @@ const PlayerContainer = () => {
             <PlayerBox>
 
                 <ThumbWrap />
+
+                <ControlWrap />
 
                 {/* <LoadingContainer 
                     isLoading={true} 

@@ -18,6 +18,23 @@ const Thumb = () => {
     const animClass = 'thumb-anim w-full h-full absolute'
     const [url, setUrl] = useState(null)
     const [oldUrl, setOldUrl] = useState(null)
+    const animVariants = {
+        initial: {
+            x: '15%',
+            opacity: 0,
+        },
+        animate: {
+            x: '0',
+            opacity: 1
+        },
+        exit: {
+            x: '-15%',
+            opacity: 0
+        },
+        transition: {
+            duration: 0.3            
+        }
+    }
 
     useEffect(() => {
         // prevent action when first render
@@ -61,10 +78,10 @@ const Thumb = () => {
                 {url !== oldUrl && 
                     <motion.div
                         key={url}
-                        initial={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        exit={{opacity: 0}}
-                        transition={{duration: 0.3}}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={animVariants}
                         className={animClass}
                     >
                         <ImageComp url={url} />

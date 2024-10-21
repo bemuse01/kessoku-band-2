@@ -4,7 +4,7 @@ import defaultThumb from '@/public/images/default.jpg'
 import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 const ThumbWrap = () => {
-    const ThumbWrapClass = 'thumb-wrap w-full h-full'
+    const ThumbWrapClass = 'thumb-wrap w-full h-full absolute'
     const ThumbWrapStyle = {
         borderRadius: `${PLAYER_BORDER_VALUE}px`
     }
