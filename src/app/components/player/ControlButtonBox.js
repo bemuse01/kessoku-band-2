@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 
 const ControlButtonBox = () => {
-    const buttonBoxClass = 'control-button-box w-full h-[30%] flex justify-center items-center relative drop-shadow-[0_0_8px_rgba(0,0,0,0.25)] gap-[10px]'
+    const buttonBoxClass = 'control-button-box w-full h-[30%] flex justify-center items-center relative drop-shadow-[0_0_8px_rgba(0,0,0,0.25)] gap-[2.5%]'
 
     const isFirstRender = useRef({effect1: true})
 
@@ -37,13 +37,13 @@ const ControlButtonBox = () => {
     const buttonPublicClass = ' aspect-square h-full'
 
     // play button
-    const playButtonClass = 'control-play-button pl-[7.5px] pr-[2.5px] py-[5px]' + buttonPublicClass
+    const playButtonClass = 'control-play-button pl-[0.75%] pr-[0.25%] py-[1%]' + buttonPublicClass
 
     // previous button
-    const prevButtonClass = 'control-prev-button scale-x-[-1] p-[11px]' + buttonPublicClass
+    const prevButtonClass = 'control-prev-button scale-x-[-1] p-[2%]' + buttonPublicClass
 
     // next button
-    const nextButtonClass = 'control-next-button p-[11px]' + buttonPublicClass
+    const nextButtonClass = 'control-next-button p-[2%]' + buttonPublicClass
 
 
     return(
