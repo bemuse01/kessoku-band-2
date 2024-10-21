@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
-import ImageComp from './ImageCOmp'
+import ImageComp from './ImageComp'
 
 
 const Thumb = () => {
