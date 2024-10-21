@@ -6,7 +6,7 @@ const ControlWrap = () => {
         'control-wrap',
         'w-full',
         'absolute',
-        'h-[35%]',
+        'h-[36%]',
         'bottom-0',
         'overflow-hidden',
         'bg-white'
