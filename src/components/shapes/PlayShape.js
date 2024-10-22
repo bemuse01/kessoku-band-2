@@ -9,7 +9,7 @@ const PlayShape = ({color}) => {
         >
             <path 
                 fillRule="evenodd"  
-                stroke={color} 
+                stroke={color}
                 strokeWidth="1px"
                 strokeLinecap="butt" 
                 strokeLinejoin="miter" 

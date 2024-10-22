@@ -1,5 +1,6 @@
 import { PLAYER_BORDER_VALUE } from '@/config/style'
 
+
 const PlayerBox = ({children}) => {
     const PlayerBoxClass = [
         'player-box',

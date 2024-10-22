@@ -1,5 +1,6 @@
 import Button from '@/components/public/Button'
 import PlayShape from '@/components/shapes/PlayShape'
+import PauseShape from '@/components/shapes/PauseShape'
 
 
 const PlayButton = ({color, onClick, isPlaying}) => {
@@ -19,7 +20,12 @@ const PlayButton = ({color, onClick, isPlaying}) => {
             className={playButtonClass}
             onClick={onClick}
         >
-            <PlayShape color={color} />
+            {
+                isPlaying ?
+                <PauseShape color={color} />
+                :
+                <PlayShape color={color} />
+            }
         </Button>
     )
 }
