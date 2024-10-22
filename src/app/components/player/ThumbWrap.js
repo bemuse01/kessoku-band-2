@@ -1,7 +1,6 @@
-import Image from 'next/image'
-import Thumb from './Thumb'
-import defaultThumb from '@/public/images/default.jpg'
+import ThumbBox from './ThumbBox'
 import { PLAYER_BORDER_VALUE } from '@/config/style'
+
 
 const ThumbWrap = () => {
     const ThumbWrapClass = 'thumb-wrap w-full h-full absolute'
@@ -15,7 +14,7 @@ const ThumbWrap = () => {
             style={ThumbWrapStyle}
         >
 
-            <Thumb />
+            <ThumbBox />
             
         </div>
     )

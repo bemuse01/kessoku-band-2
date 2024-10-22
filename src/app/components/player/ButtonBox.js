@@ -26,7 +26,7 @@ const ButtonBox = () => {
     const index = useDataStore(state => state.index)
     const idx = usePlayerStore(state => state.idx)
     const {getDataById} = useDataStore()
-    const {play, pause, change, increaseIdx, decreaseIdx} = usePlayerStore()
+    const {play, pause, change, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
     const player = usePlayerStore(state => state.player)
     
@@ -80,11 +80,13 @@ const ButtonBox = () => {
         if(idx === 0) return
         pause()
         decreaseIdx(data.length - 1)
+        setDirection(-1)
     }
     const nextMusic = () => {
         if(idx === data.length - 1) return
         pause()
         increaseIdx(data.length - 1)
+        setDirection(1)
     }
 
 

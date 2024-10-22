@@ -7,6 +7,7 @@ const usePlayerStore = create((set, get) => ({
     isLoaded: false,
     isPlaying: false,
     idx: 0,
+    direction: 1,
 
 
     // player
@@ -19,7 +20,11 @@ const usePlayerStore = create((set, get) => ({
     // idx
     setIdx: (newIdx) => set(() => ({idx: newIdx})),
     increaseIdx: (max) => set(state => ({idx: clamp(state.idx + 1, 0, max)})),
-    decreaseIdx: (max) => set(state => ({idx: clamp(state.idx - 1, 0, max)}))
+    decreaseIdx: (max) => set(state => ({idx: clamp(state.idx - 1, 0, max)})),
+
+
+    // direction
+    setDirection: (newDirection) => set({direction: newDirection})
 }))
 
 export default usePlayerStore

@@ -5,15 +5,21 @@ import usePlayerStore from '@/store/playerStore'
 import ImageComp from './ImageComp'
 
 
-const Thumb = () => {
-    const ThumbClass = 'thumb w-full h-full relative'
+const ThumbBox = () => {
+    const ThumbClass = 'thumb-box w-full h-full relative'
 
-    const isFirstRender = useRef({effect1: true, effect2: true})
+    const isFirstRender = useRef({effect1: true})
+
+
+    // store
+    const data = useDataStore(state => state.data)
+    const index = useDataStore(state => state.index)
+    const idx = usePlayerStore(state => state.idx)
+    const direction = usePlayerStore(state => state.direction)
+    const {getDataById} = useDataStore()
+
 
     // image
-    const data = useDataStore((state) => state.data)
-    const index = useDataStore((state) => state.index)
-    const idx = usePlayerStore((state) => state.idx)
     const animClass = 'thumb-anim w-full h-full absolute'
     const [url, setUrl] = useState(null)
     const [oldUrl, setOldUrl] = useState(null)
@@ -34,24 +40,27 @@ const Thumb = () => {
             duration: 0.3            
         }
     }
+    const changeUrl = () => {
+        setOldUrl(url)
+
+        const id = index[idx]
+        const newUrl = getDataById(id).thumbnail
+        setUrl(newUrl)
+
+        console.log('url changed', url, oldUrl, idx)
+    }
 
     useEffect(() => {
-        // prevent action when first render
         if(isFirstRender.current.effect1){
             isFirstRender.current.effect1 = false
             return
         }
 
-        // when data and index loaded
         if(index !== null && data !== null){
-            setOldUrl(url)
-
-            const id = index[idx]
-            const newUrl = data.find(i => i.id === id).thumbnail
-            setUrl(newUrl)
-
-            console.log('url changed', url, oldUrl, idx)
+            changeUrl()
         }
+
+
     }, [data, index, idx])
 
 
@@ -65,9 +74,9 @@ const Thumb = () => {
                 {url !== oldUrl && 
                     <motion.div
                         key={url}
-                        initial="initial"
+                        initial={direction === 1 ? 'initial' : 'exit'}
                         animate="animate"
-                        exit="exit"
+                        exit={direction === 1 ? 'exit' : 'initial'}
                         variants={animVariants}
                         className={animClass}
                     >
@@ -82,4 +91,4 @@ const Thumb = () => {
 }
 
 
-export default Thumb
+export default ThumbBox
