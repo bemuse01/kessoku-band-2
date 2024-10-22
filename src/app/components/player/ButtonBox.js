@@ -77,10 +77,12 @@ const ButtonBox = () => {
         else play()
     }
     const prevMusic = () => {
+        if(idx === 0) return
         pause()
         decreaseIdx(data.length - 1)
     }
     const nextMusic = () => {
+        if(idx === data.length - 1) return
         pause()
         increaseIdx(data.length - 1)
     }
