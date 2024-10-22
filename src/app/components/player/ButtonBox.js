@@ -71,7 +71,7 @@ const ButtonBox = ({data, index, idx, player}) => {
         'relative',
         'drop-shadow-[0_0_8px_rgba(0,0,0,0.25)]',
         'gap-[2.5%]',
-        'h-[46px] max-lg:h-[42px] max-md:h-[38px]'
+        'h-[45px] max-lg:h-[40px] max-md:h-[35px]'
     ].join(' ')
     const buttonBoxStyle = {
         color: newColor,
