@@ -2,7 +2,7 @@ import Button from '@/components/public/Button'
 import PlayShape from '@/components/shapes/PlayShape'
 
 
-const PlayButton = ({color}) => {
+const PlayButton = ({color, onClick, isPlaying}) => {
     // play button
     const playButtonClass = [
         'control-play-button',
@@ -17,6 +17,7 @@ const PlayButton = ({color}) => {
     return(
         <Button
             className={playButtonClass}
+            onClick={onClick}
         >
             <PlayShape color={color} />
         </Button>

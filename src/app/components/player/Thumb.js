@@ -14,7 +14,6 @@ const Thumb = () => {
     const data = useDataStore((state) => state.data)
     const index = useDataStore((state) => state.index)
     const idx = usePlayerStore((state) => state.idx)
-    const {increaseIdx} = usePlayerStore()
     const animClass = 'thumb-anim w-full h-full absolute'
     const [url, setUrl] = useState(null)
     const [oldUrl, setOldUrl] = useState(null)
@@ -54,18 +53,6 @@ const Thumb = () => {
             console.log('url changed', url, oldUrl, idx)
         }
     }, [data, index, idx])
-
-    useEffect(() => {
-        if(isFirstRender.current.effect2){
-            isFirstRender.current.effect2 = false
-            return
-        }
-
-        window.addEventListener('click', () => {
-            increaseIdx()
-            console.log('work')
-        })
-    }, [])
 
 
     return(

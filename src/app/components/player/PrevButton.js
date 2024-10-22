@@ -1,7 +1,7 @@
 import Button from '@/components/public/Button'
 import NextShape from '@/components/shapes/nextShape'
 
-const PrevButton = ({color}) => {
+const PrevButton = ({color, onClick}) => {
     // prev button
     const prevButtonClass = [
         'control-next-button',
@@ -15,6 +15,7 @@ const PrevButton = ({color}) => {
     return(
         <Button
             className={prevButtonClass}
+            onClick={onClick}
         >
             <NextShape color={color} />
         </Button>

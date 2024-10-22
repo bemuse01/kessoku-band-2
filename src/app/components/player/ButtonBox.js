@@ -19,14 +19,40 @@ const ButtonBox = () => {
         'h-[46px] max-lg:h-[42px] max-md:h-[38px]'
     ].join(' ')
 
-    const isFirstRender = useRef({effect1: true})
+    const isFirstRender = useRef({player: true, color: true})
+
+
+    const data = useDataStore(state => state.data)
+    const index = useDataStore(state => state.index)
+    const idx = usePlayerStore(state => state.idx)
+    const {getDataById} = useDataStore()
+    const {play, pause, change, increaseIdx, decreaseIdx} = usePlayerStore()
+    const isPlaying = usePlayerStore(state => state.isPlaying)
+    const player = usePlayerStore(state => state.player)
+    
+
+    // player
+    const changeByData = () => {
+        const id = index[idx]
+        const media_file = getDataById(id).media_file
+        change(media_file)
+    }
+
+    useEffect(() => {
+        if(isFirstRender.current.player){
+            isFirstRender.current.player = false
+            return
+        }
+
+        if(player !== null){
+            changeByData()
+        }
+
+    }, [player, idx])
+
 
     // main color
-    const data = useDataStore((state) => state.data)
-    const index = useDataStore((state) => state.index)
-    const idx = usePlayerStore((state) => state.idx)
     const [color, setColor] = useState('#222222')
-    const {getDataById} = useDataStore()
     const setColorByData = () => {
         const id = index[idx]
         const newColor = '#' + getDataById(id).main_color
@@ -34,9 +60,8 @@ const ButtonBox = () => {
     }
 
     useEffect(() => {
-        // prevent action when first render
-        if(isFirstRender.current.effect1){
-            isFirstRender.current.effect1 = false
+        if(isFirstRender.current.color){
+            isFirstRender.current.color = false
             return
         }
 
@@ -47,17 +72,30 @@ const ButtonBox = () => {
 
 
     // button event
+    const playMusic = () => {
+        if(isPlaying) pause()
+        else play()
+    }
+    const prevMusic = () => {
+        pause()
+        decreaseIdx(data.length - 1)
+    }
+    const nextMusic = () => {
+        pause()
+        increaseIdx(data.length - 1)
+    }
+
 
     return(
         <div
             className={buttonBoxClass}
         >
 
-            <PrevButton color={color} />
+            <PrevButton color={color} onClick={prevMusic}/>
 
-            <PlayButton color={color} />
+            <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
 
-            <NextButton color={color} />
+            <NextButton color={color} onClick={nextMusic}/>
 
         </div>
     )
