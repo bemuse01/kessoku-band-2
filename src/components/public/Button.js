@@ -1,5 +1,5 @@
 const Button = ({className, onClick, children}) => {
-    const buttonClass = className + ' cursor-pointer'
+    const buttonClass = className + ' cursor-pointer duration-300 hover:opacity-[0.6]'
 
     return(
         <div

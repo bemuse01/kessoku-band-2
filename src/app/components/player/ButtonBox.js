@@ -95,11 +95,11 @@ const ButtonBox = () => {
             className={buttonBoxClass}
         >
 
-            <PrevButton color={color} onClick={prevMusic}/>
+            <PrevButton color={color} onClick={prevMusic} />
 
             <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
 
-            <NextButton color={color} onClick={nextMusic}/>
+            <NextButton color={color} onClick={nextMusic} />
 
         </div>
     )
