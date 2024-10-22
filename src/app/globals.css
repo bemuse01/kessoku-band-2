@@ -18,6 +18,16 @@
     box-sizing: border-box;
 }
 
+img{
+    user-select: none;
+}
+span{
+    user-select: none;
+}
+p{
+    user-select: none;
+}
+
 body{
     color: var(--foreground);
     /* background: var(--background); */

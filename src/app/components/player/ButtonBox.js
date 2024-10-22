@@ -4,31 +4,19 @@ import usePlayerStore from '@/store/playerStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
 import PrevButton from './PrevButton'
+import { DEFAULT_COLOR } from '@/config/style'
+import useColor from '@/app/hooks/useColor'
+import { alphaToHex } from '@/utils/color'
 
 
-const ButtonBox = () => {
-    const buttonBoxClass = [
-        'button-box',
-        'w-full',
-        'flex',
-        'justify-center',
-        'items-center',
-        'relative',
-        'drop-shadow-[0_0_8px_rgba(0,0,0,0.25)]',
-        'gap-[2.5%]',
-        'h-[46px] max-lg:h-[42px] max-md:h-[38px]'
-    ].join(' ')
-
+const ButtonBox = ({data, index, idx, player}) => {
     const isFirstRender = useRef({player: true, color: true})
 
 
-    const data = useDataStore(state => state.data)
-    const index = useDataStore(state => state.index)
-    const idx = usePlayerStore(state => state.idx)
+    // store
     const {getDataById} = useDataStore()
     const {play, pause, change, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
-    const player = usePlayerStore(state => state.player)
     
 
     // player
@@ -52,12 +40,14 @@ const ButtonBox = () => {
 
 
     // main color
-    const [color, setColor] = useState('#222222')
+    const [color, setColor] = useState(DEFAULT_COLOR)
     const setColorByData = () => {
         const id = index[idx]
         const newColor = '#' + getDataById(id).main_color
         setColor(newColor)
     }
+    const {newColor} = useColor(color)
+
 
     useEffect(() => {
         if(isFirstRender.current.color){
@@ -69,6 +59,24 @@ const ButtonBox = () => {
             setColorByData()
         }
     }, [data, index, idx])
+
+
+    // button box
+    const buttonBoxClass = [
+        'button-box',
+        'w-full',
+        'flex',
+        'justify-center',
+        'items-center',
+        'relative',
+        'drop-shadow-[0_0_8px_rgba(0,0,0,0.25)]',
+        'gap-[2.5%]',
+        'h-[46px] max-lg:h-[42px] max-md:h-[38px]'
+    ].join(' ')
+    const buttonBoxStyle = {
+        color: newColor,
+        filter: `drop-shadow(0 0 6px ${newColor + alphaToHex(0.5)})`
+    }
 
 
     // button event
@@ -93,13 +101,14 @@ const ButtonBox = () => {
     return(
         <div
             className={buttonBoxClass}
+            style={buttonBoxStyle}
         >
 
-            <PrevButton color={color} onClick={prevMusic} />
+            <PrevButton color={newColor} onClick={prevMusic} />
 
-            <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
+            <PlayButton color={newColor} onClick={playMusic} isPlaying={isPlaying} />
 
-            <NextButton color={color} onClick={nextMusic} />
+            <NextButton color={newColor} onClick={nextMusic} />
 
         </div>
     )
