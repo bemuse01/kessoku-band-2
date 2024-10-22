@@ -9,7 +9,13 @@ const nextConfig = {
         ];
     },
     images: {
-        domains: ['github.com'], // GitHub 도메인 추가
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'github.com',
+                port: '',
+            }
+        ]
     },
 };
 
