@@ -1,22 +1,22 @@
 import { PLAYER_BORDER_VALUE } from '@/config/style'
-import ControlButtonBox from './ControlButtonBox'
+import ButtonBox from './ButtonBox'
 
 const ControlWrap = () => {
     const controlWrapClass = [
         'control-wrap',
         'w-full',
         'absolute',
-        'h-[36%]',
+        'h-auto',
         'bottom-0',
         'overflow-hidden',
-        'bg-white'
+        'bg-white',
         // 'w-[500px] max-lg:w-[400px] max-md:w-[320px]',
     ].join(' ')
     const controlWrapStyle = {
         borderRadius: `${PLAYER_BORDER_VALUE}px`
     }
 
-    const controlBoxClass = 'w-full h-full relative p-[12px] flex flex-col'
+    const controlBoxClass = 'w-full h-auto relative p-[6px] flex flex-col'
 
     return(
         <div
@@ -28,7 +28,7 @@ const ControlWrap = () => {
                 className={controlBoxClass}
             >
 
-                <ControlButtonBox />
+                <ButtonBox />
 
             </div>
 

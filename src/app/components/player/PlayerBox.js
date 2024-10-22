@@ -3,7 +3,7 @@ import { PLAYER_BORDER_VALUE } from '@/config/style'
 const PlayerBox = ({children}) => {
     const PlayerBoxClass = [
         'player-box',
-        'w-[500px] max-lg:w-[430px] max-md:w-[360px]',
+        'w-[520px] max-lg:w-[450px] max-md:w-[380px]',
         'aspect-square',
         'relative',
         'drop-shadow-[0_0_20px_rgba(0,0,0,0.25)]'
