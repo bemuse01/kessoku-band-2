@@ -1,41 +1,68 @@
-import { clamp } from '@/utils/math'
+import { useState } from 'react'
 
-const Slider = ({className, color, height, trackRef, thumbRef, valueRef, onMousedown}) => {
+
+const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMousedown, onClick}) => {
     // slider
     const sliderClass = [
         'slider',
         'w-full',
         'relative',
         'flex',
-        className,
+        'cursor-pointer',
+        'items-center',
+        'rounded-full',
+        className
     ].join(' ')
     const sliderStyle = {
-        height: `${height}px`
+        height: `${height}px`,
     }
     
+
+    // 
+    const [scaleY, setScaleY] = useState(1)
+    const onMouseenter = (e) => {
+        e.preventDefault()
+
+        setScaleY(2)
+    }
+    const onMouseleave = (e) => {
+        e.preventDefault()
+
+        setScaleY(1)
+    }
+
 
     // slider track
     const sliderTrackClass = 'slider-track w-full h-full absolute rounded-full'
     const sliderTrackStyle = {
         background: color,
-        opacity: '0.3'
+        opacity: '0.3',
+        transform: `scaleY(${scaleY})`,
+        transition: '0.3s transform'
     }
 
 
     // slider value
-    const sliderValueClass = 'slider-value w-full h-full absolute rounded-full'
+    const sliderValueClass = 'slider-value w-full h-full absolute rounded-full overflow-hidden pointer-events-none'
     const sliderValueStyle = {
+        transform: `scaleY(${scaleY})`,
+        transition: '0.3s transform'
+    }
+    const sliderValueChildClass = 'w-full h-full'
+    const sliderValueChildStyle = {
         background: color,
         transformOrigin: 'left',
-        // transform: `scaleX(${value})`
+        transform: `scaleX(${value})`,
     }
 
 
     // slider thumb
-    const sliderThumbClass = 'slider-thumb aspect-square h-full absolute left-0 rounded-full cursor-pointer'
+    const sliderThumbClass = 'slider-thumb absolute left-0 rounded-full cursor-pointer'
     const sliderThumbStyle = {
+        width: `${height}px`,
+        height: `${height}px`,
         background: color,
-        // transform: `translateX(${x}px) scale(3)`
+        transform: `translateX(${x}px) scale(${thumbScale})`
     }
 
 
@@ -43,27 +70,33 @@ const Slider = ({className, color, height, trackRef, thumbRef, valueRef, onMouse
         <div
             className={sliderClass}
             style={sliderStyle}
+            onMouseEnter={(e) => onMouseenter(e)}
+            onMouseLeave={(e) => onMouseleave(e)}
         >
 
             <div
                 className={sliderTrackClass}
                 style={sliderTrackStyle}
-                ref={trackRef}
+                ref={sliderRef}
+                onClick={onClick}
             >
             </div>
 
             <div
                 className={sliderValueClass}
                 style={sliderValueStyle}
-                ref={valueRef}
             >
+                <div 
+                    className={sliderValueChildClass}
+                    style={sliderValueChildStyle}
+                >
+                </div>
             </div>
 
             <div
                 className={sliderThumbClass}
                 style={sliderThumbStyle}
                 onMouseDown={(e) => onMousedown(e)}
-                ref={thumbRef}
             >
             </div>
 

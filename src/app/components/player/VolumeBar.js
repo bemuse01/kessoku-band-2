@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Slider from '@/components/public/Slider'
 import usePlayerStore from '@/store/playerStore'
 import { clamp, normalize } from '@/utils/math'
@@ -13,26 +13,39 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
     const player = usePlayerStore(state => state.player)
 
 
-    const volumeBarClass = 'volume-area w-full h-full flex justify-center items-center absolute'
+    const volumeBarClass = 'volume-bar w-full h-full flex justify-center items-center absolute p-[6px]'
 
 
     // volume
     const height = 4
     const hh = height / 2
     const thumbScale = 4
-    const trackRef = useRef(null)
-    const valueRef = useRef(null)
-    const thumbRef = useRef(null)
+    const sliderRef = useRef(null)
+    const [value, setValue] = useState(0)
+    const [x, setX] = useState(0)
     const isDraggable = useRef(false)
     const initVolumeBar = () => {
         const volume = getVolume()
-        const {width} = trackRef.current.getBoundingClientRect()
+        const {width} = sliderRef.current.getBoundingClientRect()
         const rx = width * volume
         const cx = clamp(rx, 0, width)
         const nx = normalize(cx, -hh, width - hh, 0, width)
 
-        thumbRef.current.style.transform = `translateX(${nx}px) scale(${thumbScale})`
-        valueRef.current.style.transform = `scaleX(${volume})`
+        setX(nx)
+        setValue(volume)
+    }
+    const calculate = (e) => {
+        const {clientX} = e
+
+        const {width, left} = sliderRef.current.getBoundingClientRect()
+        const rx = clientX - left
+        const cx = clamp(rx, 0, width)
+        const nx = normalize(cx, -hh, width - hh, 0, width)
+        const nv = cx / width
+
+        setX(nx)
+        setValue(nv)
+        setVolume(nv)
     }
     const onMousedown = (e) => {
         e.preventDefault()
@@ -49,22 +62,17 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
     const onMousemove = (e) => {
         e.preventDefault()
         
-        
         if(!isDraggable.current) return
-        if(trackRef.current === null || thumbRef.current === null) return
+        if(sliderRef.current === null) return
 
-        const {clientX} = e
+        calculate(e)
+    }
+    const onClick = (e) => {
+        e.preventDefault()
 
-        const {width, left} = trackRef.current.getBoundingClientRect()
-        const rx = clientX - left
-        const cx = clamp(rx, 0, width)
-        const nx = normalize(cx, -hh, width - hh, 0, width)
-        thumbRef.current.style.transform = `translateX(${nx}px) scale(${thumbScale})`
+        if(sliderRef.current === null) return
 
-        const nv = cx / width
-        valueRef.current.style.transform = `scaleX(${nv})`
-
-        setVolume(nv)
+        calculate(e)
     }
 
     useEffect(() => {
@@ -99,7 +107,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
             className={volumeBarClass}
         >
 
-            <Slider color={color} height={height} trackRef={trackRef} thumbRef={thumbRef} valueRef={valueRef} onMousedown={onMousedown}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} onMousedown={onMousedown} onClick={onClick}/>
 
         </div>
     )
