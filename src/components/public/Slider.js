@@ -16,7 +16,7 @@ const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMo
     const sliderStyle = {
         height: `${height}px`,
     }
-    
+
 
     // 
     const [scaleY, setScaleY] = useState(1)
@@ -79,6 +79,7 @@ const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMo
                 style={sliderTrackStyle}
                 ref={sliderRef}
                 onClick={onClick}
+                onMouseDown={(e) => onMousedown(e)}
             >
             </div>
 
