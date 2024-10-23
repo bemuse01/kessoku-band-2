@@ -14,7 +14,9 @@ const usePlayerStore = create((set, get) => ({
     setPlayer: () => set({player: new Player(set)}),
     play: () => get().player.play(),
     pause: () => get().player.pause(),
-    change: (src) => get().player.change(src),
+    change: src => get().player.change(src),
+    setVolume: volume => get().player.setVolume(volume),
+    getVolume: () => get().player.getVolume(),
 
 
     // idx

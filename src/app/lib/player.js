@@ -29,8 +29,8 @@ export default class{
     setCurrentTime(){
         
     }
-    setVolume(){
-
+    setVolume(volume){
+        this.audio.volume = volume
     }
     setLoaded(newValue){
         this.loaded = newValue
@@ -46,6 +46,9 @@ export default class{
     }
     isPaused(){
         return this.audio.paused
+    }
+    getVolume(){
+        return this.audio.volume
     }
 
 

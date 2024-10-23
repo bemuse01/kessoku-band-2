@@ -4,7 +4,9 @@ import usePlayerStore from '@/store/playerStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
 import PrevButton from './PrevButton'
+import VolumeArea from './VolumeArea'
 import VolumeButton from './VolumeButton'
+import VolumeBar from './VolumeBar'
 import ListButton from './ListButton'
 import ButtonWrapper from './ButtonWrapper'
 import { DEFAULT_COLOR } from '@/config/style'
@@ -117,7 +119,10 @@ const ButtonBox = ({data, index, idx, player}) => {
             </ButtonWrapper>
 
             <ButtonWrapper className={'flex-row-reverse'}>
-                <VolumeButton color={newColor} />
+                <VolumeArea>
+                    <VolumeButton color={newColor} />
+                    <VolumeBar color={newColor} />
+                </VolumeArea>
             </ButtonWrapper>
 
         </div>

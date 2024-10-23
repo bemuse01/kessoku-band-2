@@ -47,7 +47,7 @@ const ThumbBox = () => {
         const newUrl = getDataById(id).thumbnail
         setUrl(newUrl)
 
-        console.log('url changed', url, oldUrl, idx)
+        console.log(url, oldUrl, idx)
     }
 
     useEffect(() => {
@@ -55,11 +55,10 @@ const ThumbBox = () => {
             isFirstRender.current.effect1 = false
             return
         }
-
-        if(index !== null && data !== null){
+        
+        if(data !== null && index !== null){
             changeUrl()
         }
-
 
     }, [data, index, idx])
 

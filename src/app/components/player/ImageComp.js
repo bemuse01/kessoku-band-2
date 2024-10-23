@@ -22,6 +22,7 @@ const ImageLoading = ({imgClass, animClass}) => {
                 alt='loading'
                 src={LoadingImage}
                 priority={true}
+                draggable={false}
             />
         </motion.div>
     )
@@ -37,6 +38,7 @@ const ImageReal = ({url, imgClass, onLoad}) => {
             alt='thumbnail'
             priority={true}
             onLoad={() => onLoad()}
+            draggable={false}
         />
     )
 }
