@@ -4,7 +4,7 @@ import usePlayerStore from '@/store/playerStore'
 import { clamp, normalize } from '@/utils/math'
 
 
-const VolumeBar = ({color}) => {
+const VolumeBar = ({color, setIsHoldingBar}) => {
     const isFirstRender = useRef({player: true, render: true})
 
 
@@ -13,7 +13,7 @@ const VolumeBar = ({color}) => {
     const player = usePlayerStore(state => state.player)
 
 
-    const volumeBarClass = 'volume-area w-full h-full flex justify-center items-center'
+    const volumeBarClass = 'volume-area w-full h-full flex justify-center items-center absolute'
 
 
     // volume
@@ -37,11 +37,13 @@ const VolumeBar = ({color}) => {
         e.preventDefault()
 
         isDraggable.current = true
+        setIsHoldingBar(true)
     }
     const onMouseup = (e) => {
         e.preventDefault()
 
         isDraggable.current = false
+        setIsHoldingBar(false)
     }
     const onMousemove = (e) => {
         e.preventDefault()
