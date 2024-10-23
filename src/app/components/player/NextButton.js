@@ -3,22 +3,29 @@ import NextShape from '@/components/shapes/NextShape'
 
 
 const NextButton = ({color, onClick}) => {
-    // next button
-    const nextButtonClass = [
-        'control-next-button',
-        'aspect-square',
+    const nextButtonClass = 'control-next-button aspect-square h-full flex justify-center items-center'
+
+    // button
+    const buttonClass = [
+        'w-full',
         'h-full',
-        'p-[2%]'
+        'scale-[0.58]'
     ].join(' ')
 
 
     return(
-        <Button
+        <div
             className={nextButtonClass}
-            onClick={onClick}
         >
-            <NextShape color={color} />
-        </Button>
+
+            <Button
+                className={buttonClass}
+                onClick={onClick}
+            >
+                <NextShape color={color} />
+            </Button>
+
+        </div>
     )
 }
 

@@ -4,29 +4,34 @@ import PauseShape from '@/components/shapes/PauseShape'
 
 
 const PlayButton = ({color, onClick, isPlaying}) => {
-    // play button
-    const playButtonClass = [
-        'control-play-button',
-        'aspect-square',
+    const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center pl-[0.5%]'
+
+    // button
+    const buttonClass = [
+        'w-full',
         'h-full',
-        'pl-[0.75%]',
-        'pr-[0.25%]',
-        'py-[1%]'
+        'scale-[0.8]'
     ].join(' ')
 
 
     return(
-        <Button
+        <div
             className={playButtonClass}
-            onClick={onClick}
         >
-            {
-                isPlaying ?
-                <PauseShape color={color} />
-                :
-                <PlayShape color={color} />
-            }
-        </Button>
+
+            <Button
+                className={buttonClass}
+                onClick={onClick}
+            >
+                {
+                    isPlaying ?
+                    <PauseShape color={color} />
+                    :
+                    <PlayShape color={color} />
+                }
+            </Button>
+
+        </div>
     )
 }
 

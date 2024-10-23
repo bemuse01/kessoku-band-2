@@ -16,8 +16,8 @@ const Slider = ({className}) => {
     const sliderValueClass = 'slider-value h-full absolute'
 
 
-    // slider real
-    const sliderRealClass = 'slider-real w-full h-full absolute'
+    // slider thumb
+    const sliderThumbClass = 'slider-thumb w-full h-full absolute'
 
 
     return(
@@ -35,12 +35,10 @@ const Slider = ({className}) => {
             >
             </div>
 
-            <input 
-                className={sliderRealClass}
-                type="range"
-                min="0"
-                max="100"
-            />
+            <div
+                className={sliderThumbClass}
+            >
+            </div>
 
         </div>
     )
