@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import Slider from '@/components/public/Slider'
 import usePlayerStore from '@/store/playerStore'
 import { clamp, normalize } from '@/utils/math'
