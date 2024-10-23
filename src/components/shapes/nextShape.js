@@ -16,4 +16,5 @@ const NextShape = ({color}) => {
     )
 }
 
+
 export default NextShape

@@ -1,24 +1,33 @@
 import Button from '@/components/public/Button'
-import PlayShape from '@/components/shapes/PlayShape'
-import PauseShape from '@/components/shapes/PauseShape'
+import VolumeShape from '@/components/shapes/VolumeShape'
 
 
 const VolumeButton = ({color, onClick}) => {
-    // play button
-    const playButtonClass = [
-        'control-volume-button',
-        'aspect-square',
+    const volumeButtonClass = 'control-volume-button aspect-square h-full flex justify-center items-center'
+
+    // button
+    const buttonClass = [
+        'w-full',
         'h-full',
-        'p-[2%]'
+        'scale-[0.6]'
     ].join(' ')
 
 
     return(
-        <Button
-            className={playButtonClass}
-            onClick={onClick}
+        <div
+            className={volumeButtonClass}
         >
-        </Button>
+
+            <Button
+                className={buttonClass}
+                onClick={onClick}
+            >
+
+                <VolumeShape color={color}/>
+
+            </Button>
+
+        </div>
     )
 }
 

@@ -4,7 +4,8 @@ import PauseShape from '@/components/shapes/PauseShape'
 
 
 const PlayButton = ({color, onClick, isPlaying}) => {
-    const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center pl-[0.5%]'
+    const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center pl-[2px]'
+    // const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center'
 
     // button
     const buttonClass = [

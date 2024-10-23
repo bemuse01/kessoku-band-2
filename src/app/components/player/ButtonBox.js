@@ -4,6 +4,9 @@ import usePlayerStore from '@/store/playerStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
 import PrevButton from './PrevButton'
+import VolumeButton from './VolumeButton'
+import ListButton from './ListButton'
+import ButtonWrapper from './ButtonWrapper'
 import { DEFAULT_COLOR } from '@/config/style'
 import useColor from '@/app/hooks/useColor'
 import { alphaToHex } from '@/utils/color'
@@ -66,8 +69,7 @@ const ButtonBox = ({data, index, idx, player}) => {
         'button-box',
         'w-full',
         'flex',
-        'justify-center',
-        'items-center',
+        'flex-row',
         'relative',
         'drop-shadow-[0_0_8px_rgba(0,0,0,0.25)]',
         'gap-[2.5%]',
@@ -104,11 +106,19 @@ const ButtonBox = ({data, index, idx, player}) => {
             style={buttonBoxStyle}
         >
 
-            <PrevButton color={newColor} onClick={prevMusic} />
+            <ButtonWrapper className={'flex-row'}>
+                <ListButton color={newColor} />
+            </ButtonWrapper>
+            
+            <ButtonWrapper className={'justify-center items-center gap-[5%]'}>
+                <PrevButton color={newColor} onClick={prevMusic} />
+                <PlayButton color={newColor} onClick={playMusic} isPlaying={isPlaying} />
+                <NextButton color={newColor} onClick={nextMusic} />
+            </ButtonWrapper>
 
-            <PlayButton color={newColor} onClick={playMusic} isPlaying={isPlaying} />
-
-            <NextButton color={newColor} onClick={nextMusic} />
+            <ButtonWrapper className={'flex-row-reverse'}>
+                <VolumeButton color={newColor} />
+            </ButtonWrapper>
 
         </div>
     )

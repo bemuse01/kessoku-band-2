@@ -20,4 +20,5 @@ const PauseShape = ({color}) => {
     )
 }
 
+
 export default PauseShape
