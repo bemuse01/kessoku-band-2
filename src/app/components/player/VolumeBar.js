@@ -17,8 +17,9 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
 
 
     // volume
-    const height = 5
+    const height = 4
     const hh = height / 2
+    const thumbScale = 4
     const trackRef = useRef(null)
     const valueRef = useRef(null)
     const thumbRef = useRef(null)
@@ -30,7 +31,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
         const cx = clamp(rx, 0, width)
         const nx = normalize(cx, -hh, width - hh, 0, width)
 
-        thumbRef.current.style.transform = `translateX(${nx}px) scale(3)`
+        thumbRef.current.style.transform = `translateX(${nx}px) scale(${thumbScale})`
         valueRef.current.style.transform = `scaleX(${volume})`
     }
     const onMousedown = (e) => {
@@ -58,7 +59,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
         const rx = clientX - left
         const cx = clamp(rx, 0, width)
         const nx = normalize(cx, -hh, width - hh, 0, width)
-        thumbRef.current.style.transform = `translateX(${nx}px) scale(3)`
+        thumbRef.current.style.transform = `translateX(${nx}px) scale(${thumbScale})`
 
         const nv = cx / width
         valueRef.current.style.transform = `scaleX(${nv})`
