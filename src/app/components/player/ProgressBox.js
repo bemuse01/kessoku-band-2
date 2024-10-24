@@ -1,5 +1,6 @@
-import ProgressBar from './ProgressBar'
 import useColor from '@/app/hooks/useColor'
+import ProgressBar from './ProgressBar'
+import ProgressTime from './ProgressTime'
 
 const ProgressBox = ({data, index, idx}) => {
 
@@ -23,6 +24,7 @@ const ProgressBox = ({data, index, idx}) => {
             >
 
                 <ProgressBar color={color} idx={idx} />
+                <ProgressTime color={color} />
 
             </div>
 

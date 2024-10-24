@@ -20,7 +20,7 @@ const LoadingWrap = ({reverse}) => {
 
     // loading chils
     const loadChildCount = 6
-    const color = reverse ? 255 : 0
+    const color = reverse ? 255 : 50
     const loadChilds = Array.from({length: loadChildCount}, (_, i) => {
 
         const len = loadChildCount - 1

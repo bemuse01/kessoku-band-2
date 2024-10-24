@@ -22,6 +22,7 @@ export default class{
         this.audio.addEventListener('canplaythrough', () => this.onLoad())
         this.audio.addEventListener('ended', () => this.onEnd())
         this.audio.addEventListener('play', () => this.onPlay())
+        this.audio.addEventListener('timeupdate', () => this.onTimeupdate())
     }
 
 
@@ -87,9 +88,12 @@ export default class{
             this.set({isLoaded: false})
             this.setLoaded(false)
         }
+
+        this.set({duration: 0})
     }
     onLoad(){
         this.set({isLoaded: true})
+        this.set({duration: this.getDuration()})
         this.setLoaded(true)
     }
     onEnd(){
@@ -97,5 +101,8 @@ export default class{
     }
     onPlay(){
         this.set({isPlaying: true})
+    }
+    onTimeupdate(){
+        this.set({currentTime: this.getCurrentTime()})
     }
 }
