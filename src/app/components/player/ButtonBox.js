@@ -1,5 +1,3 @@
-import { useState, useEffect, useRef } from 'react'
-import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
@@ -7,61 +5,19 @@ import PrevButton from './PrevButton'
 import VolumeArea from './VolumeArea'
 import ListButton from './ListButton'
 import ButtonWrapper from './ButtonWrapper'
-import { DEFAULT_COLOR } from '@/config/style'
 import useColor from '@/app/hooks/useColor'
 import { alphaToHex } from '@/utils/color'
 
 
-const ButtonBox = ({data, index, idx, player}) => {
-    const isFirstRender = useRef({player: true, color: true})
-
-
+const ButtonBox = ({data, index, idx}) => {
     // store
-    const {getDataById} = useDataStore()
-    const {play, pause, change, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
+    const {play, pause, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
+    const isLoaded = usePlayerStore(state => state.isLoaded)
     
 
-    // player
-    const changeByData = () => {
-        const id = index[idx]
-        const media_file = getDataById(id).media_file
-        change(media_file)
-    }
-
-    useEffect(() => {
-        if(isFirstRender.current.player){
-            isFirstRender.current.player = false
-            return
-        }
-
-        if(player !== null){
-            changeByData()
-        }
-
-    }, [player, idx])
-
-
     // main color
-    const [color, setColor] = useState(DEFAULT_COLOR)
-    const setColorByData = () => {
-        const id = index[idx]
-        const newColor = '#' + getDataById(id).main_color
-        setColor(newColor)
-    }
-    const {newColor} = useColor(color)
-
-
-    useEffect(() => {
-        if(isFirstRender.current.color){
-            isFirstRender.current.color = false
-            return
-        }
-
-        if(data !== null && index !== null){
-            setColorByData()
-        }
-    }, [data, index, idx])
+    const {color} = useColor({data, index, idx})
 
 
     // button box
@@ -76,13 +32,14 @@ const ButtonBox = ({data, index, idx, player}) => {
         'h-[45px] max-lg:h-[40px] max-md:h-[35px]'
     ].join(' ')
     const buttonBoxStyle = {
-        color: newColor,
-        filter: `drop-shadow(0 0 6px ${newColor + alphaToHex(0.5)})`
+        color,
+        filter: `drop-shadow(0 0 6px ${color + alphaToHex(0.5)})`
     }
 
 
     // button event
     const playMusic = () => {
+        if(!isLoaded) return
         if(isPlaying) pause()
         else play()
     }
@@ -107,17 +64,17 @@ const ButtonBox = ({data, index, idx, player}) => {
         >
 
             <ButtonWrapper className={'flex-row'}>
-                <ListButton color={newColor} />
+                <ListButton color={color} />
             </ButtonWrapper>
             
             <ButtonWrapper className={'justify-center items-center gap-[5%]'}>
-                <PrevButton color={newColor} onClick={prevMusic} />
-                <PlayButton color={newColor} onClick={playMusic} isPlaying={isPlaying} />
-                <NextButton color={newColor} onClick={nextMusic} />
+                <PrevButton color={color} onClick={prevMusic} />
+                <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
+                <NextButton color={color} onClick={nextMusic} />
             </ButtonWrapper>
 
             <ButtonWrapper className={'flex-row-reverse'}>
-                <VolumeArea color={newColor} />
+                <VolumeArea color={color} />
             </ButtonWrapper>
 
         </div>

@@ -19,12 +19,18 @@ const PlayerContainer = () => {
     const idx = usePlayerStore((state) => state.idx)
     const {getDataById} = useDataStore()
     const {setPlayer, change} = usePlayerStore()
+    const player = usePlayerStore(state => state.player)
     const initPlayer = () => {
         const id = index[idx]
         const src = getDataById(id).media_file
 
         setPlayer()
         change(src)
+    }
+    const changeByData = () => {
+        const id = index[idx]
+        const media_file = getDataById(id).media_file
+        change(media_file)
     }
 
     useEffect(() => {
@@ -38,6 +44,18 @@ const PlayerContainer = () => {
         }
 
     }, [data, index])
+
+    useEffect(() => {
+        if(isFirstRender.current.effect2){
+            isFirstRender.current.effect2 = false
+            return
+        }
+
+        if(player !== null){
+            changeByData()
+        }
+
+    }, [player, idx])
 
 
     return(

@@ -18,7 +18,10 @@ export default class{
     create(){
         this.audio = new Audio()
         this.audio.volume = 0.5
-        this.audio.addEventListener('canplaythrough', () => this.onLoad()) 
+        this.audio.addEventListener('loadstart', () => this.onLoadStart())
+        this.audio.addEventListener('canplaythrough', () => this.onLoad())
+        this.audio.addEventListener('ended', () => this.onEnd())
+        this.audio.addEventListener('play', () => this.onPlay())
     }
 
 
@@ -26,8 +29,8 @@ export default class{
     setSrc(src){
         this.audio.src = src
     }
-    setCurrentTime(){
-        
+    setCurrentTime(time){
+        this.audio.currentTime = time
     }
     setVolume(volume){
         this.audio.volume = volume
@@ -50,6 +53,12 @@ export default class{
     getVolume(){
         return this.audio.volume
     }
+    getDuration(){
+        return this.audio.duration
+    }
+    getCurrentTime(){
+        return this.audio.currentTime
+    }
 
 
     // action
@@ -63,14 +72,30 @@ export default class{
     }
     change(src){
         this.setSrc(src)
-        this.setLoaded(false)
-        this.set({isLoaded: false})
+        // this.set({isLoaded: false})
     }
 
 
     // event
+    onLoadStart(){
+        const {readyState} = this.audio
+
+        if(readyState === 4){
+            this.set({isLoaded: true})
+            this.setLoaded(true)
+        }else{
+            this.set({isLoaded: false})
+            this.setLoaded(false)
+        }
+    }
     onLoad(){
         this.set({isLoaded: true})
         this.setLoaded(true)
+    }
+    onEnd(){
+        this.set({isPlaying: false})
+    }
+    onPlay(){
+        this.set({isPlaying: true})
     }
 }

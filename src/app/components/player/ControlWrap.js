@@ -3,6 +3,7 @@ import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 import ButtonBox from './ButtonBox'
 import InfoBox from './InfoBox'
+import ProgressBox from './ProgressBox'
 
 
 const ControlWrap = () => {
@@ -14,13 +15,12 @@ const ControlWrap = () => {
         'bottom-0',
         'overflow-hidden',
         'bg-white',
-        // 'w-[500px] max-lg:w-[400px] max-md:w-[320px]',
     ].join(' ')
     const controlWrapStyle = {
         borderRadius: `${PLAYER_BORDER_VALUE}px`
     }
 
-    const controlBoxClass = 'w-full h-auto relative p-[6px] flex flex-col gap-[6px]'
+    const controlBoxClass = 'w-full h-auto relative p-[8px] flex flex-col gap-[8px]'
 
     const data = useDataStore(state => state.data)
     const index = useDataStore(state => state.index)
@@ -39,6 +39,8 @@ const ControlWrap = () => {
             >
 
                 <InfoBox data={data} index={index} idx={idx} />
+
+                <ProgressBox data={data} index={index} idx={idx} />
 
                 <ButtonBox data={data} index={index} idx={idx} player={player} />
 

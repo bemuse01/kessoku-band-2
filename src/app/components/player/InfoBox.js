@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react' 
+import { useEffect, useRef, useState } from 'react' 
 import useDataStore from '@/store/dataStore'
+// import usePlayerStore from '@/store/playerStore'
 import { alphaToHex } from '@/utils/color'
-import { DEFAULT_COLOR } from '@/config/style'
 import useColor from '@/app/hooks/useColor'
 
 
@@ -11,16 +11,11 @@ const InfoBox = ({data, index, idx}) => {
 
     // store
     const {getDataById} = useDataStore()
+    // const isLoaded = usePlayerStore(state => state.isLoaded)
 
 
-    // color
-    const [color, setColor] = useState(DEFAULT_COLOR)
-    const setColorByData = () => {
-        const id = index[idx]
-        const newColor = '#' + getDataById(id).main_color
-        setColor(newColor)
-    }
-    const {newColor} = useColor(color)
+    // main color
+    const {color} = useColor({data, index, idx})
 
 
     // info
@@ -31,10 +26,9 @@ const InfoBox = ({data, index, idx}) => {
         'h-auto',
     ].join(' ')
     const infoBoxStyle = {
-        color: newColor,
-        filter: `drop-shadow(0 0 6px ${newColor + alphaToHex(0.5)})`
+        color,
+        filter: `drop-shadow(0 0 6px ${color + alphaToHex(0.5)})`
     }
-
     const infoClass = 'info w-full h-auto relative flex flex-col px-[6px]'
 
     // title
@@ -45,14 +39,21 @@ const InfoBox = ({data, index, idx}) => {
     const artistClass = 'h-auto text-[20px] max-lg:text-[18px] max-md:text-[16px] text-center'
     const [artist, setArtist] = useState()
 
-    const setInfo = () => {
-        const id = index[idx]
-        const {title: newTitle, artist: newArtist} = getDataById(id)
+    const setInfo = (title, artist) => {
+        if(title || artist){
 
-        setTitle(newTitle)
-        setArtist(newArtist)
+            setTitle(title)
+            setArtist(artist)
+
+        }else{
+
+            const id = index[idx]
+            const {title: newTitle, artist: newArtist} = getDataById(id)
+            setTitle(newTitle)
+            setArtist(newArtist)
+
+        }
     }
-
 
     useEffect(() => {
         if(isFirstRender.current.effec1){
@@ -61,12 +62,15 @@ const InfoBox = ({data, index, idx}) => {
         }
 
         if(data !== null && index !== null){
-            setColorByData()
             setInfo()
         }
         
     }, [data, index, idx])
-    
+
+    // useEffect(() => {
+
+    // }, [isLoaded])
+
 
     return(
         <div
