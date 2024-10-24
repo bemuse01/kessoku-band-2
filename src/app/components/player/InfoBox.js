@@ -24,6 +24,7 @@ const InfoBox = ({data, index, idx}) => {
         'w-full',
         'relative',
         'h-auto',
+        'mb-[4px]'
     ].join(' ')
     const infoBoxStyle = {
         color,
