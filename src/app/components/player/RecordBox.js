@@ -1,30 +1,30 @@
-import { AnimatePresence, motion } from 'framer-motion'
 import usePlayerStore from '@/store/playerStore'
-import ImageComp from './ImageComp'
+import Record from './Record'
+import { motion, AnimatePresence } from 'framer-motion'
 import useUrl from '@/app/hooks/useUrl'
 import { DEFAULT_SPRING } from '@/config/easing'
 
 
-const ThumbBox = ({data, index, idx}) => {
+const RecordBox = ({data, index, idx}) => {
     // store
-    const direction = usePlayerStore(state => state.direction)
+    const {url} = useUrl({data, index, idx})
+    const isPlaying = usePlayerStore(state => state.isPlaying)
 
 
-    // thumb box
-    const ThumbBoxClass = 'thumb-box w-full h-full relative'
+    // 
+    const recordBoxClass = 'record-box w-full h-full'
 
 
-    // image
-    const {url, oldUrl} = useUrl({data, index, idx})
-    const animClass = 'thumb-anim w-full h-full absolute'
+    // record anim
+    const recordAnimClass = 'record-anim w-full h-full flex justify-center items-center'
     const animVariants = {
         initial: {
-            x: '15%',
             opacity: 0,
+            x: '0'
         },
         animate: {
-            x: '0',
             opacity: 1,
+            x: '50%',
             transition: {
                 x: {...DEFAULT_SPRING},
                 opacity: {
@@ -33,35 +33,40 @@ const ThumbBox = ({data, index, idx}) => {
             }
         },
         exit: {
-            x: '-15%',
             opacity: 0,
+            x: '0',
             transition: {
                 x: {...DEFAULT_SPRING},
                 opacity: {
                     duration: 0.3
                 }
             }
-        },
+        }
     }
+
+
+    // record
+    const w = '90%'
+    const h = '90%'
     
 
     return(
         <div
-            className={ThumbBoxClass}
-        >   
-
+            className={recordBoxClass}
+        >
             <AnimatePresence>
-            
-                {url !== oldUrl && 
+
+                {isPlaying &&
                     <motion.div
-                        key={url}
-                        initial={direction === 1 ? 'initial' : 'exit'}
+                        className={recordAnimClass}
+                        initial="initial"
                         animate="animate"
-                        exit={direction === 1 ? 'exit' : 'initial'}
+                        exit="exit"
                         variants={animVariants}
-                        className={animClass}
                     >
-                        <ImageComp url={url} />
+
+                        <Record url={url} w={w} h={h} />
+
                     </motion.div>
                 }
 
@@ -72,4 +77,4 @@ const ThumbBox = ({data, index, idx}) => {
 }
 
 
-export default ThumbBox
+export default RecordBox

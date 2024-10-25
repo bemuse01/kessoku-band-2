@@ -4,22 +4,28 @@ import usePlayerStore from '@/store/playerStore'
 import PlayerBox from './PlayerBox'
 import ThumbWrap from './ThumbWrap'
 import ControlWrap from './ControlWrap'
+import RecordWrap from './RecordWrap'
 // import LoadingContainer from '@/components/loading/LoadingContainer'
 // import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const PlayerContainer = () => {
-    const PlayerContClass = 'player-container w-screen h-screen absolute flex justify-center items-center'
-
     const isFirstRender = useRef({effect1: true, effect2: true})
 
-    // player
-    const data = useDataStore((state) => state.data)
-    const index = useDataStore((state) => state.index)
-    const idx = usePlayerStore((state) => state.idx)
+
+    // store
+    const data = useDataStore(state => state.data)
+    const index = useDataStore(state => state.index)
+    const idx = usePlayerStore(state => state.idx)
     const {getDataById} = useDataStore()
     const {setPlayer, change} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
+
+
+    // player container
+    const PlayerContClass = 'player-container w-screen h-screen absolute flex justify-center items-center'
+
+    // player
     const initPlayer = () => {
         const id = index[idx]
         const src = getDataById(id).media_file
@@ -64,6 +70,8 @@ const PlayerContainer = () => {
         >
             
             <PlayerBox>
+
+                <RecordWrap />
 
                 <ThumbWrap />
 
