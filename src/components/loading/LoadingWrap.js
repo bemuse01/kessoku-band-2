@@ -1,5 +1,5 @@
 import { motion, cubicBezier } from 'framer-motion'
-import { easeInOutQuint, easeInOutCubic } from '@/config/easing'
+import { easeInOutQuint } from '@/config/easing'
 
 const LoadingWrap = ({reverse}) => {
     // loading wrap 
