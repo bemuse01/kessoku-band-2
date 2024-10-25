@@ -10,7 +10,7 @@ const PlayerBox = ({children}) => {
         'drop-shadow-[0_0_20px_rgba(0,0,0,0.25)]'
     ].join(' ')
     const PlayerBoxStyle = {
-        borderRadius: `${PLAYER_BORDER_VALUE}px`
+        // borderRadius: `${PLAYER_BORDER_VALUE}px`
     }
 
     return(
