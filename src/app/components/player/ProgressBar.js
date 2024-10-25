@@ -123,7 +123,7 @@ const ProgressBar = ({color, idx}) => {
             className={progressBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} onMousedown={onMousedown} onClick={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
 
         </div>
     )

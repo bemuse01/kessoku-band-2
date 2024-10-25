@@ -107,7 +107,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
             className={volumeBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} onMousedown={onMousedown} onClick={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
 
         </div>
     )

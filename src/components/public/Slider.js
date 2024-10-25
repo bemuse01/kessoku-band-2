@@ -1,7 +1,24 @@
 import { useState } from 'react'
 
 
-const Slider = ({className, color, height, x, value, thumbScale, isThumbHover = false, sliderRef, onMousedown, onClick}) => {
+const Slider = ({
+        className, 
+        color, 
+        height, 
+        x, 
+        value, 
+        thumbScale, 
+        isThumbHover = false, 
+        sliderRef,
+        mouseenter = () => {},
+        mouseleave = () => {},
+        mousedown = () => {},
+        click = () => {}
+    }) => {
+    // 
+    const [scaleY, setScaleY] = useState(1)
+
+
     // slider
     const sliderClass = [
         'slider',
@@ -10,16 +27,18 @@ const Slider = ({className, color, height, x, value, thumbScale, isThumbHover = 
         'flex',
         'cursor-pointer',
         'items-center',
-        'rounded-full',
+        'py-[5px]',
         className
     ].join(' ')
     const sliderStyle = {
-        height: `${height}px`,
     }
 
 
-    // 
-    const [scaleY, setScaleY] = useState(1)
+    // slider wrapper
+    const sliderWrapperClass = 'slide-wrapper w-full rounded-full relative'
+    const sliderWrapperStyle = {
+        height: `${height}px`,
+    }
 
 
     // slider track
@@ -66,14 +85,24 @@ const Slider = ({className, color, height, x, value, thumbScale, isThumbHover = 
     const onMouseenter = (e) => {
         e.preventDefault()
 
+        mouseenter(e)
         setScaleY(2)
         if(isThumbHover) setScale(thumbScale)
     }
     const onMouseleave = (e) => {
         e.preventDefault()
 
+        mouseleave(e)
         setScaleY(1)
         if(isThumbHover) setScale(0)
+    }
+    const onMousedown = (e) => {
+        e.preventDefault()
+    
+        mousedown(e)
+    }
+    const onClick = (e) => {
+        click(e)
     }
 
 
@@ -86,35 +115,42 @@ const Slider = ({className, color, height, x, value, thumbScale, isThumbHover = 
         >
 
             <div
-                className={sliderTrackClass}
-                style={sliderTrackStyle}
-                ref={sliderRef}
-                onClick={onClick}
-                onMouseDown={(e) => onMousedown(e)}
+                className={sliderWrapperClass}
+                style={sliderWrapperStyle}
             >
-            </div>
 
-            <div
-                className={sliderValueClass}
-                style={sliderValueStyle}
-            >
-                <div 
-                    className={sliderValueChildClass}
-                    style={sliderValueChildStyle}
-                >
-                </div>
-            </div>
-
-            <div
-                className={sliderThumbClass}
-                style={sliderThumbStyle}
-                onMouseDown={(e) => onMousedown(e)}
-            >
                 <div
-                    className={sliderThumbChildClass}
-                    style={sliderThumbChildStyle}
+                    className={sliderTrackClass}
+                    style={sliderTrackStyle}
+                    ref={sliderRef}
+                    onClick={(e) => onClick(e)}
+                    onMouseDown={(e) => onMousedown(e)}
                 >
                 </div>
+
+                <div
+                    className={sliderValueClass}
+                    style={sliderValueStyle}
+                >
+                    <div 
+                        className={sliderValueChildClass}
+                        style={sliderValueChildStyle}
+                    >
+                    </div>
+                </div>
+
+                <div
+                    className={sliderThumbClass}
+                    style={sliderThumbStyle}
+                    onMouseDown={(e) => onMousedown(e)}
+                >
+                    <div
+                        className={sliderThumbChildClass}
+                        style={sliderThumbChildStyle}
+                    >
+                    </div>
+                </div>
+
             </div>
 
         </div>
