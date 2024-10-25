@@ -1,9 +1,8 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import LoadingImage from '@/public/images/loading.gif'
-import defaultThumb from '@/public/images/default.jpg'
 import Image from 'next/image'
 
 
@@ -43,28 +42,17 @@ const ImageReal = ({url, imgClass, onLoad}) => {
 }
 
 const ImageComp = ({url}) => {
+    // image comp
     const imageCompClass = 'image-comp w-full h-full overflow-hidden relative'
 
-    const isFirstRender = useRef({effect1: true})
 
     // image
     const imgClass = 'w-full h-full object-cover absolute'
     const imgAnimClass = 'w-full h-full absolute'
-    const [src, setSrc] = useState(defaultThumb.src)
     const [isLoading, setIsLoading] = useState(true)
     const onLoad = () => {
         setIsLoading(false)
     }
-    
-    useEffect(() => {
-        if(isFirstRender.current.effect1){
-            isFirstRender.current.effect1 = false
-            return
-        }
-
-        setSrc(url)
-
-    }, [url])
 
 
     return(
@@ -73,8 +61,8 @@ const ImageComp = ({url}) => {
         >   
 
             <ImageReal
-                key={src}
-                url={src}
+                key={url}
+                url={url}
                 imgClass={imgClass}
                 onLoad={onLoad}
             /> 

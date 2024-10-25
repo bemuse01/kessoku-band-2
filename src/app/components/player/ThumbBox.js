@@ -3,26 +3,21 @@ import { useState, useEffect, useRef } from 'react'
 import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 import ImageComp from './ImageComp'
+import useUrl from '@/app/hooks/useUrl'
 
 
-const ThumbBox = () => {
-    const ThumbClass = 'thumb-box w-full h-full relative'
-
-    const isFirstRender = useRef({effect1: true})
-
-
+const ThumbBox = ({data, index, idx}) => {
     // store
-    const data = useDataStore(state => state.data)
-    const index = useDataStore(state => state.index)
-    const idx = usePlayerStore(state => state.idx)
     const direction = usePlayerStore(state => state.direction)
-    const {getDataById} = useDataStore()
+
+
+    // thumb box
+    const ThumbBoxClass = 'thumb-box w-full h-full relative'
 
 
     // image
+    const {url, oldUrl} = useUrl({data, index, idx})
     const animClass = 'thumb-anim w-full h-full absolute'
-    const [url, setUrl] = useState(null)
-    const [oldUrl, setOldUrl] = useState(null)
     const animVariants = {
         initial: {
             x: '15%',
@@ -40,32 +35,11 @@ const ThumbBox = () => {
             duration: 0.3            
         }
     }
-    const changeUrl = () => {
-        setOldUrl(url)
-
-        const id = index[idx]
-        const newUrl = getDataById(id).thumbnail
-        setUrl(newUrl)
-
-        console.log(url, oldUrl, idx)
-    }
-
-    useEffect(() => {
-        if(isFirstRender.current.effect1){
-            isFirstRender.current.effect1 = false
-            return
-        }
-        
-        if(data !== null && index !== null){
-            changeUrl()
-        }
-
-    }, [data, index, idx])
-
+    
 
     return(
         <div
-            className={ThumbClass}
+            className={ThumbBoxClass}
         >   
 
             <AnimatePresence>
