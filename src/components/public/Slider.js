@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 
-const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMousedown, onClick}) => {
+const Slider = ({className, color, height, x, value, thumbScale, isThumbHover = false, sliderRef, onMousedown, onClick}) => {
     // slider
     const sliderClass = [
         'slider',
@@ -20,16 +20,6 @@ const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMo
 
     // 
     const [scaleY, setScaleY] = useState(1)
-    const onMouseenter = (e) => {
-        e.preventDefault()
-
-        setScaleY(2)
-    }
-    const onMouseleave = (e) => {
-        e.preventDefault()
-
-        setScaleY(1)
-    }
 
 
     // slider track
@@ -57,12 +47,33 @@ const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMo
 
 
     // slider thumb
-    const sliderThumbClass = 'slider-thumb absolute left-0 rounded-full cursor-pointer'
+    const [scale, setScale] = useState(isThumbHover ? 0 : thumbScale)
+    const sliderThumbClass = 'slider-thumb absolute left-0 cursor-pointer'
     const sliderThumbStyle = {
         width: `${height}px`,
         height: `${height}px`,
+        transform: `translateX(${x}px)`
+    }
+    const sliderThumbChildClass = 'slider-thumb-child w-full h-full rounded-full'
+    const sliderThumbChildStyle = {
         background: color,
-        transform: `translateX(${x}px) scale(${thumbScale})`
+        transform: `scale(${scale})`,
+        transition: '0.3s transform'
+    }
+
+
+    // event
+    const onMouseenter = (e) => {
+        e.preventDefault()
+
+        setScaleY(2)
+        if(isThumbHover) setScale(thumbScale)
+    }
+    const onMouseleave = (e) => {
+        e.preventDefault()
+
+        setScaleY(1)
+        if(isThumbHover) setScale(0)
     }
 
 
@@ -99,6 +110,11 @@ const Slider = ({className, color, height, x, value, thumbScale, sliderRef, onMo
                 style={sliderThumbStyle}
                 onMouseDown={(e) => onMousedown(e)}
             >
+                <div
+                    className={sliderThumbChildClass}
+                    style={sliderThumbChildStyle}
+                >
+                </div>
             </div>
 
         </div>
