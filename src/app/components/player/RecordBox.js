@@ -1,8 +1,8 @@
 import usePlayerStore from '@/store/playerStore'
 import Record from './Record'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, cubicBezier } from 'framer-motion'
 import useUrl from '@/app/hooks/useUrl'
-import { DEFAULT_SPRING } from '@/config/easing'
+import { DEFAULT_SPRING, easeOutCirc } from '@/config/easing'
 
 
 const RecordBox = ({data, index, idx}) => {
@@ -36,10 +36,8 @@ const RecordBox = ({data, index, idx}) => {
             opacity: 0,
             x: '0',
             transition: {
-                x: {...DEFAULT_SPRING},
-                opacity: {
-                    duration: 0.3
-                }
+                ease: cubicBezier(...easeOutCirc),
+                duration: 0.3
             }
         }
     }
