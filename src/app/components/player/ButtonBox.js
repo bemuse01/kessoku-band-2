@@ -1,4 +1,5 @@
 import usePlayerStore from '@/store/playerStore'
+import useStateStore from '@/store/stateStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
 import PrevButton from './PrevButton'
@@ -14,6 +15,7 @@ const ButtonBox = ({data, index, idx}) => {
     const {play, pause, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
     const isLoaded = usePlayerStore(state => state.isLoaded)
+    const {toggleIsListOpen} = useStateStore()
     
 
     // main color
@@ -55,6 +57,9 @@ const ButtonBox = ({data, index, idx}) => {
         increaseIdx(data.length - 1)
         setDirection(1)
     }
+    const openList = () => {
+        toggleIsListOpen()
+    }
 
 
     return(
@@ -64,7 +69,7 @@ const ButtonBox = ({data, index, idx}) => {
         >
 
             <ButtonWrapper className={'flex-row'}>
-                <ListButton color={color} />
+                <ListButton color={color} onClick={openList} />
             </ButtonWrapper>
             
             <ButtonWrapper className={'justify-center items-center gap-[5%]'}>

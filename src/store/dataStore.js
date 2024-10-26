@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 
+
 const useDataStore = create((set, get) => ({
     data: null,
     index: null,
@@ -18,5 +19,6 @@ const useDataStore = create((set, get) => ({
     // 
     isLoading: () => get().data === null ? true : false
 }))
+
 
 export default useDataStore

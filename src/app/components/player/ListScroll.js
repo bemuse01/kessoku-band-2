@@ -5,9 +5,9 @@ import { useEffect, useMemo } from 'react'
 import ListItem from './ListItem'
 
 
-const ListScroll = ({items, color}) => {
+const ListScroll = ({items, color, idx}) => {
     // list scroll
-    const listScrollClass = 'list-scroll w-[50%] h-full absolute p-[12px]'
+    const listScrollClass = 'list-scroll w-[50%] h-full absolute p-[8px]'
 
 
     // list
@@ -38,13 +38,14 @@ const ListScroll = ({items, color}) => {
             >
 
                 {items.map(item => (
-                    <ListItem 
+                    <ListItem
                         key={item.key} 
                         title={item.title}
                         artist={item.artist}
                         order={item.order}
                         len={item.len}
                         color={color}
+                        idx={idx}
                     />
                 ))}
 

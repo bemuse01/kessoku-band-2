@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import Player from '@/app/lib/player'
 import { clamp } from '@/utils/math'
 
+
 const usePlayerStore = create((set, get) => ({
     player: null,
     isLoaded: false,
@@ -33,5 +34,6 @@ const usePlayerStore = create((set, get) => ({
     // direction
     setDirection: (newDirection) => set({direction: newDirection})
 }))
+
 
 export default usePlayerStore
