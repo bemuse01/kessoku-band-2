@@ -5,6 +5,7 @@
 :root{
     --background: #ffffff;
     --foreground: #171717;
+    --scrollbar-color: #555555;
 }
 
 @media (prefers-color-scheme: dark){
@@ -68,7 +69,10 @@ body{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ddd;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    background: var(--scrollbar-color);
     border-radius: 4px;
 }
+/* 
+::-webkit-scrollbar-thumb:hover{
+    background: var(--scrollbar-color);
+} */

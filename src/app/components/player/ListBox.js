@@ -2,8 +2,7 @@ import { PLAYER_BORDER_VALUE } from '@/config/style'
 import useColor from '@/app/hooks/useColor'
 import useDataStore from '@/store/dataStore'
 import { useMemo } from 'react'
-import ListItem from './ListItem'
-
+import ListScroll from './ListScroll'
 
 const ListBox = ({data, index, idx}) => {
     // store
@@ -22,17 +21,7 @@ const ListBox = ({data, index, idx}) => {
     }
 
 
-    // list
-    const listClass = 'list w-[50%] h-full absolute p-[12px]'
-
-
-    // list scroll
-    const listScrollClass = 'list-scroll w-full h-full relative overflow-x-hidden overflow-y-scroll pr-[6px]'
-    const listScrollStyle = {
-        color
-    }
-
-
+    // 
     const items = useMemo(() => {
         if(index === null && data === null) return []
         return index.map((id, i) => {
@@ -59,29 +48,7 @@ const ListBox = ({data, index, idx}) => {
                 style={listWrapperStyle}
             >
 
-                <div
-                    className={listClass}
-                >
-
-                    <div
-                        className={listScrollClass}
-                        style={listScrollStyle}
-                    >
-
-                        {items.map(item => (
-                            <ListItem 
-                                key={item.key} 
-                                title={item.title}
-                                artist={item.artist}
-                                order={item.order}
-                                len={item.len}
-                                color={color}
-                            />
-                        ))}
-
-                    </div>
-
-                </div>
+               <ListScroll items={items} color={color} />
 
             </div>
 
