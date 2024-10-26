@@ -5,6 +5,7 @@ import PlayerBox from './PlayerBox'
 import ThumbWrap from './ThumbWrap'
 import ControlWrap from './ControlWrap'
 import RecordWrap from './RecordWrap'
+import ListWrap from './ListWrap'
 // import LoadingContainer from '@/components/loading/LoadingContainer'
 // import { PLAYER_BORDER_VALUE } from '@/config/style'
 
@@ -72,6 +73,8 @@ const PlayerContainer = () => {
             <PlayerBox>
 
                 <RecordWrap />
+
+                <ListWrap />
 
                 <ThumbWrap />
 
