@@ -14,7 +14,7 @@ const usePlayerStore = create((set, get) => ({
 
 
     // player
-    setPlayer: () => set({player: new Player(set)}),
+    setPlayer: () => set(() => ({player: new Player(set)})),
     play: () => get().player.play(),
     pause: () => get().player.pause(),
     change: src => get().player.change(src),

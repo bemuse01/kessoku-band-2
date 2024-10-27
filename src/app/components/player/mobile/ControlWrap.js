@@ -21,7 +21,7 @@ const ControlWrap = () => {
         'bg-white',
     ].join(' ')
     const controlWrapStyle = {
-        // borderRadius: `0 0 ${PLAYER_BORDER_VALUE}px ${PLAYER_BORDER_VALUE}px`
+        borderRadius: `${PLAYER_BORDER_VALUE}px ${PLAYER_BORDER_VALUE}px 0 0`
     }
 
     const controlBoxClass = 'w-full h-auto relative px-[8px] py-[14px] flex flex-col gap-[8px]'

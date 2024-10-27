@@ -6,7 +6,7 @@ const PlayerBox = ({children}) => {
         'player-box',
         'w-full',
         'h-full',
-        'absolute',
+        'relative',
         'bottom-0',
         'flex',
         'flex-col',

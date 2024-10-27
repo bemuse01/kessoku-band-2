@@ -31,7 +31,7 @@ const useColor = ({data, index, idx}) => {
     }, [data, index, idx])
     
 
-    return {color: newColor}
+    return {color: newColor, originalColor: color}
 }
 
 

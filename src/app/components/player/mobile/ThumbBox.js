@@ -3,6 +3,7 @@ import usePlayerStore from '@/store/playerStore'
 import ImageComp from './ImageComp'
 import useUrl from '@/app/hooks/useUrl'
 import { DEFAULT_SPRING } from '@/config/easing'
+import { PLAYER_BORDER_VALUE } from '@/config/style'
 
 
 const ThumbBox = ({data, index, idx}) => {
@@ -11,12 +12,15 @@ const ThumbBox = ({data, index, idx}) => {
 
 
     // thumb box
-    const ThumbBoxClass = 'thumb-box w-full aspect-square aspect-square relative'
+    const ThumbBoxClass = 'thumb-box w-full h-full relative'
 
 
     // image
     const {url, oldUrl} = useUrl({data, index, idx})
-    const animClass = 'thumb-anim w-full h-full absolute'
+    const animClass = 'thumb-anim w-full h-full absolute overflow-hidden'
+    const animStyle = {
+        borderRadius: `${PLAYER_BORDER_VALUE}px`
+    }
     const animVariants = {
         initial: {
             x: '15%',
@@ -60,6 +64,7 @@ const ThumbBox = ({data, index, idx}) => {
                         exit={direction === 1 ? 'exit' : 'initial'}
                         variants={animVariants}
                         className={animClass}
+                        style={animStyle}
                     >
                         <ImageComp url={url} />
                     </motion.div>

@@ -10,6 +10,7 @@ const oxanium = Oxanium({
 export const metadata = {
     title: 'Kessoku Band',
     description: 'Kessoku Band Player',
+    viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 }
 
 export default function RootLayout({ children }) {

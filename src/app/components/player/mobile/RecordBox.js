@@ -3,12 +3,14 @@ import Record from './Record'
 import { motion, AnimatePresence, cubicBezier } from 'framer-motion'
 import useUrl from '@/app/hooks/useUrl'
 import { DEFAULT_SPRING, easeOutCirc } from '@/config/easing'
+// import useColor from '@/app/hooks/useColor'
 
 
 const RecordBox = ({data, index, idx}) => {
     // store
     const {url} = useUrl({data, index, idx})
     const isPlaying = usePlayerStore(state => state.isPlaying)
+    // const {color} = useColor({data, index, idx})
 
 
     // 
@@ -44,8 +46,8 @@ const RecordBox = ({data, index, idx}) => {
 
 
     // record
-    const w = '100%'
-    const h = '100%'
+    const w = '90%'
+    const h = '90%'
     
 
     return(

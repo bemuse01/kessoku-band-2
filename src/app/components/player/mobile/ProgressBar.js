@@ -13,10 +13,9 @@ const ProgressBar = ({color, idx}) => {
     const player = usePlayerStore(state => state.player)
 
 
+    // progress
     const progressBarClass = 'progress-bar w-full h-auto flex justify-center items-center py-[6px]'
 
-
-    // progress
     const height = 4
     const hh = height / 2
     const thumbScale = 4
@@ -45,7 +44,6 @@ const ProgressBar = ({color, idx}) => {
         setCurrentTime(currentTime)
     }
     const update = () => {
-        if(player === null) return
         if(sliderRef.current === null) return
 
         const currentTime = getCurrentTime()
@@ -97,8 +95,6 @@ const ProgressBar = ({color, idx}) => {
         requestAnimationFrame(animate)
     }
     const init = () => {
-        animate()
-
         document.addEventListener('mouseup', (e) => onMouseup(e))
         document.addEventListener('mousemove', (e) => onMousemove(e))
     }
@@ -109,6 +105,11 @@ const ProgressBar = ({color, idx}) => {
             isFirstRender.current.render = false
         }
     }, [])
+    useEffect(() => {
+        if(player !== null) animate()
+
+        return () => cancelAnimationFrame(animate)
+    }, [player])
 
 
     return(
