@@ -4,29 +4,35 @@ import usePlayerStore from '@/store/playerStore'
 import { clamp, normalize } from '@/utils/math'
 
 
-const ProgressBar = ({color, idx}) => {
+const VolumeBar = ({color, setIsHoldingBar}) => {
     const isFirstRender = useRef({player: true, render: true})
 
 
     // store
-    const {setCurrentTime, getCurrentTime, getDuration} = usePlayerStore()
+    const {setVolume, getVolume} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
 
 
-    const progressBarClass = 'progress-bar w-full h-auto flex justify-center items-center py-[6px]'
+    const volumeBarClass = 'volume-bar w-full h-full flex justify-center items-center absolute p-[6px]'
 
 
-    // progress
+    // volume
     const height = 4
     const hh = height / 2
     const thumbScale = 4
     const sliderRef = useRef(null)
     const [value, setValue] = useState(0)
-    const [x, setX] = useState(-hh)
+    const [x, setX] = useState(0)
     const isDraggable = useRef(false)
-    const initValue = () => {
-        setValue(0)
-        setX(-hh)
+    const initVolumeBar = () => {
+        const volume = getVolume()
+        const {width} = sliderRef.current.getBoundingClientRect()
+        const rx = width * volume
+        const cx = clamp(rx, 0, width)
+        const nx = normalize(cx, -hh, width - hh, 0, width)
+
+        setX(nx)
+        setValue(volume)
     }
     const calculate = (e) => {
         const {clientX} = e
@@ -35,36 +41,23 @@ const ProgressBar = ({color, idx}) => {
         const rx = clientX - left
         const cx = clamp(rx, 0, width)
         const nx = normalize(cx, -hh, width - hh, 0, width)
-
         const nv = cx / width
-        
-        const currentTime = getDuration() * nv
 
         setX(nx)
         setValue(nv)
-        setCurrentTime(currentTime)
-    }
-    const update = () => {
-        const currentTime = getCurrentTime()
-        const duration = getDuration()
-        const nv = currentTime / duration
-
-        const {width} = sliderRef.current.getBoundingClientRect()
-        const rx = width * nv
-        const nx = normalize(rx, -hh, width - hh, 0, width)
-
-        setX(nx)
-        setValue(nv)
+        setVolume(nv)
     }
     const onMousedown = (e) => {
         e.preventDefault()
 
         isDraggable.current = true
+        setIsHoldingBar(true)
     }
     const onMouseup = (e) => {
         e.preventDefault()
 
         isDraggable.current = false
+        setIsHoldingBar(false)
     }
     const onMousemove = (e) => {
         e.preventDefault()
@@ -89,22 +82,13 @@ const ProgressBar = ({color, idx}) => {
         }
 
         if(player !== null){
-            animate()
+            initVolumeBar()
         }
 
     }, [player])
 
-    useEffect(() => {
-        initValue()
-    }, [idx])
-
 
     // on render
-    const animate = () => {
-        update()
-
-        requestAnimationFrame(animate)
-    }
     const init = () => {
         document.addEventListener('mouseup', (e) => onMouseup(e))
         document.addEventListener('mousemove', (e) => onMousemove(e))
@@ -120,14 +104,14 @@ const ProgressBar = ({color, idx}) => {
 
     return(
         <div
-            className={progressBarClass}
+            className={volumeBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
 
         </div>
     )
 }
 
 
-export default ProgressBar
+export default VolumeBar
