@@ -8,7 +8,7 @@ const RecordWrap = () => {
 
 
     // record wrap
-    const recordWrapClass = 'record-wrap w-full h-full absolute'
+    const recordWrapClass = 'record-wrap w-full aspect-square absolute'
 
 
     return(

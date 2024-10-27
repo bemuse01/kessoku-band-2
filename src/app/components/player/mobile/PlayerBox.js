@@ -4,9 +4,12 @@
 const PlayerBox = ({children}) => {
     const PlayerBoxClass = [
         'player-box',
-        'w-[540px] max-lg:w-[470px] max-md:w-[400px]',
-        'aspect-square',
-        'relative',
+        'w-full',
+        'h-full',
+        'absolute',
+        'bottom-0',
+        'flex',
+        'flex-col',
         'drop-shadow-[0_0_20px_rgba(0,0,0,0.25)]'
     ].join(' ')
     const PlayerBoxStyle = {

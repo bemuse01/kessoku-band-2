@@ -20,13 +20,13 @@ const RecordBox = ({data, index, idx}) => {
     const animVariants = {
         initial: {
             opacity: 0,
-            x: '0'
+            y: '0'
         },
         animate: {
             opacity: 1,
-            x: '50%',
+            y: '-50%',
             transition: {
-                x: {...DEFAULT_SPRING},
+                y: {...DEFAULT_SPRING},
                 opacity: {
                     duration: 0.3
                 }
@@ -34,7 +34,7 @@ const RecordBox = ({data, index, idx}) => {
         },
         exit: {
             opacity: 0,
-            x: '0',
+            y: '0',
             transition: {
                 ease: cubicBezier(...easeOutCirc),
                 duration: 0.3
@@ -44,8 +44,8 @@ const RecordBox = ({data, index, idx}) => {
 
 
     // record
-    const w = '90%'
-    const h = '90%'
+    const w = '100%'
+    const h = '100%'
     
 
     return(

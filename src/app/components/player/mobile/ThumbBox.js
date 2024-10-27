@@ -11,7 +11,7 @@ const ThumbBox = ({data, index, idx}) => {
 
 
     // thumb box
-    const ThumbBoxClass = 'thumb-box w-full h-full relative'
+    const ThumbBoxClass = 'thumb-box w-full aspect-square aspect-square relative'
 
 
     // image

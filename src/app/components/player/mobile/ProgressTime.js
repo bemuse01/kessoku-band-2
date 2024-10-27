@@ -2,7 +2,7 @@ import usePlayerStore from '@/store/playerStore'
 import useTime from '@/app/hooks/useTime'
 
 const ProgressTime = ({color}) => {
-    const progressTimeClass = 'progress-time w-full h-auto flex flex-row text-[12px]'
+    const progressTimeClass = 'progress-time w-full h-auto flex flex-row text-[14px]'
     const progressTimeStyle = {
         color
     }

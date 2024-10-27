@@ -14,17 +14,17 @@ const ControlWrap = () => {
     const controlWrapClass = [
         'control-wrap',
         'w-full',
-        'absolute',
+        'relative',
         'h-auto',
         'bottom-0',
         'overflow-hidden',
         'bg-white',
     ].join(' ')
     const controlWrapStyle = {
-        borderRadius: `${PLAYER_BORDER_VALUE}px`
+        // borderRadius: `0 0 ${PLAYER_BORDER_VALUE}px ${PLAYER_BORDER_VALUE}px`
     }
 
-    const controlBoxClass = 'w-full h-auto relative p-[8px] flex flex-col gap-[8px]'
+    const controlBoxClass = 'w-full h-auto relative px-[8px] py-[14px] flex flex-col gap-[8px]'
 
 
     return(

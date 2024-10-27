@@ -33,11 +33,11 @@ const InfoBox = ({data, index, idx}) => {
     const infoClass = 'info w-full h-auto relative flex flex-col px-[6px]'
 
     // title
-    const titleClass = 'h-auto text-[30px] max-lg:text-[26px] max-md:text-[22px] text-center'
+    const titleClass = 'h-auto text-[30px] text-center'
     const [title, setTitle] = useState()
 
     // artist
-    const artistClass = 'h-auto text-[20px] max-lg:text-[18px] max-md:text-[16px] text-center'
+    const artistClass = 'h-auto text-[20px] text-center'
     const [artist, setArtist] = useState()
 
     const setInfo = (title, artist) => {
