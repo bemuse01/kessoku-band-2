@@ -9,9 +9,9 @@ const RecordWrap = () => {
 
 
     // record wrap
-    const recordWrapClass = 'record-wrap w-full aspect-square absolute'
+    const recordWrapClass = 'record-wrap w-full h-full relative flex justify-center'
     const recordWrapStyle = {
-        width: MOBILE_THUMB_WIDHT
+        // width: MOBILE_THUMB_WIDHT
     }
 
 

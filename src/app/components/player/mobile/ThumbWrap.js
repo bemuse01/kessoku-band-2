@@ -7,9 +7,9 @@ const ThumbWrap = () => {
     const {data, index, idx} = useMainData()
 
     // thumb wrap
-    const thumbWrapClass = 'thumb-wrap aspect-square flex justify-center items-center drop-shadow-[0_0_20px_rgba(0,0,0,0.2)] absolute'
+    const thumbWrapClass = 'thumb-wrap w-full aspect-square flex justify-center items-center drop-shadow-[0_0_20px_rgba(0,0,0,0.2)] relative'
     const thumbWrapStyle = {
-        width: MOBILE_THUMB_WIDHT
+        // width: MOBILE_THUMB_WIDHT
     }
 
 

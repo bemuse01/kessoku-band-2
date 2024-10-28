@@ -7,5 +7,11 @@ const DEFAULT_SPRING = {
     damping: 18,
     mass: 0.8
 }
+const DEFAULT_SPRING_2 = {
+    type: 'spring',
+    stiffness: 200,
+    damping: 15,
+    mass: 1
+}
 
-export {easeInOutQuint, easeInOutCubic, easeOutCirc, DEFAULT_SPRING}
+export {easeInOutQuint, easeInOutCubic, easeOutCirc, DEFAULT_SPRING, DEFAULT_SPRING_2}

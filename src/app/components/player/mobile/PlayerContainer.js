@@ -76,7 +76,7 @@ const PlayerContainer = () => {
                 
                 <BgWrap />
 
-                <PlayerWrapper data={data} index={index} idx={idx} >
+                <PlayerWrapper data={data} index={index} idx={idx} className={'flex-col'}>
 
                     <RecordWrap />
 
