@@ -4,7 +4,7 @@ import { motion, AnimatePresence, cubicBezier } from 'framer-motion'
 import useUrl from '@/app/hooks/useUrl'
 import { DEFAULT_SPRING, easeInOutQuint, easeOutCirc, DEFAULT_SPRING_2 } from '@/config/easing'
 import { useEffect, useRef, useState } from 'react'
-// import useColor from '@/app/hooks/useColor'
+import useColor from '@/app/hooks/useColor'
 
 
 const RecordBox = ({data, index, idx}) => {
@@ -14,7 +14,7 @@ const RecordBox = ({data, index, idx}) => {
     // store
     const {url, oldUrl} = useUrl({data, index, idx})
     const direction = usePlayerStore(state => state.direction)
-    // const {color} = useColor({data, index, idx})
+    const {originalColor} = useColor({data, index, idx})
 
 
     // 
@@ -96,7 +96,7 @@ const RecordBox = ({data, index, idx}) => {
                         variants={animVariants}
                     >
 
-                        <Record url={url} w={w} h={h} />
+                        <Record url={url} w={w} h={h} color={originalColor} />
 
                     </motion.div>
                 }

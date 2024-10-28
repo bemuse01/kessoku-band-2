@@ -5,7 +5,7 @@ import VinylOverlayImage from '@/public/images/vinyl_overlay.png'
 import usePlayerStore from '@/store/playerStore'
 
 
-const Record = ({url, w, h}) => {
+const Record = ({url, w, h, color}) => {
     // store
     const isPlaying = usePlayerStore(state => state.isPlaying)
 
@@ -15,6 +15,8 @@ const Record = ({url, w, h}) => {
     const recordStyle = {
         width: w,
         height: h,
+        // border: `8px solid ${color}`,
+        // borderRadius: '50%'
     }
 
     const recordAnimClass = 'w-full h-full flex justify-center items-center absolute'
