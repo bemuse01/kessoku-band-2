@@ -5,9 +5,6 @@ import { clamp, normalize } from '@/utils/math'
 
 
 const ProgressBar = ({color, idx}) => {
-    const isFirstRender = useRef({player: true, render: true})
-
-
     // store
     const {setCurrentTime, getCurrentTime, getDuration, isLoaded} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
