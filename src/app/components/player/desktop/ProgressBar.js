@@ -89,21 +89,32 @@ const ProgressBar = ({color, idx}) => {
 
 
     // on render
+    const test = (e) => {
+        e.preventDefault()
+
+        console.log('touch event desktop')
+    }
     const animate = () => {
         update()
 
         requestAnimationFrame(animate)
     }
     const init = () => {
-        document.addEventListener('mouseup', (e) => onMouseup(e))
-        document.addEventListener('mousemove', (e) => onMousemove(e))
+        console.log('desktop event added')
+
+        document.addEventListener('mouseup', onMouseup)
+        document.addEventListener('mousemove', onMousemove)
+        // document.addEventListener('mouseup', test)
+    }
+    const onUnmount = () => {
+        document.removeEventListener('mouseup', onMouseup)
+        document.removeEventListener('mousemove', onMousemove)
+        // document.removeEventListener('mouseup', test)
     }
     useEffect(() => {
-        if(isFirstRender.current.render){
-            init()
+        init()
 
-            isFirstRender.current.render = false
-        }
+        return () => onUnmount()
     }, [])
     useEffect(() => {
         if(player !== null) animate()

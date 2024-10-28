@@ -89,21 +89,39 @@ const ProgressBar = ({color, idx}) => {
 
 
     // on render
+    const test = (e) => {
+        e.preventDefault()
+
+        console.log('mouse up mobile')
+    }
+    const test2 = (e) => {
+        e.preventDefault()
+
+        console.log('touch end mobile')
+    }
     const animate = () => {
         update()
 
         requestAnimationFrame(animate)
     }
     const init = () => {
-        document.addEventListener('mouseup', (e) => onMouseup(e))
-        document.addEventListener('mousemove', (e) => onMousemove(e))
+        console.log('mobile event added')
+
+        document.addEventListener('mouseup', onMouseup)
+        document.addEventListener('mousemove', onMousemove)
+        // document.addEventListener('mouseup', test)
+        // document.addEventListener('touchend', test2)
+    }
+    const onUnmount = () => {
+        document.removeEventListener('mouseup', onMouseup)
+        document.removeEventListener('mousemove', onMousemove)
+        // document.removeEventListener('mouseup', test)
+        // document.removeEventListener('touchend', test2)
     }
     useEffect(() => {
-        if(isFirstRender.current.render){
-            init()
+        init()
 
-            isFirstRender.current.render = false
-        }
+        return () => onUnmount()
     }, [])
     useEffect(() => {
         if(player !== null) animate()

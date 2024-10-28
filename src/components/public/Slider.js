@@ -102,6 +102,8 @@ const Slider = ({
         mousedown(e)
     }
     const onClick = (e) => {
+        e.preventDefault()
+        
         click(e)
     }
 
