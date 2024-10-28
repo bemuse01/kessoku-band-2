@@ -26,7 +26,7 @@ const Record = ({url, w, h}) => {
 
     const recordVinylClass = 'record-vinyl w-full h-full absolute'
 
-    const recordOverlayClass = 'record-overlay w-full h-full mix-blend-overlay absolute rotate-[90deg]'
+    const recordOverlayClass = 'record-overlay w-full h-full mix-blend-overlay absolute scale-[0.99] rotate-[90deg]'
 
 
     return(
