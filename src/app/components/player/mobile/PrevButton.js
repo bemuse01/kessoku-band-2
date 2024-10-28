@@ -2,7 +2,7 @@ import Button from '@/components/public/Button'
 import NextShape from '@/components/shapes/NextShape'
 
 
-const PrevButton = ({color, onClick}) => {
+const PrevButton = ({color, pointerup}) => {
     const prevButtonClass = 'control-prev-button aspect-square h-full flex justify-center items-center'
 
     // button
@@ -21,7 +21,7 @@ const PrevButton = ({color, onClick}) => {
 
             <Button
                 className={buttonClass}
-                onClick={onClick}
+                pointerup={pointerup}
             >
                 <NextShape color={color} />
             </Button>

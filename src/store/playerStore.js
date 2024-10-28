@@ -7,6 +7,7 @@ const usePlayerStore = create((set, get) => ({
     player: null,
     isLoaded: false,
     isPlaying: false,
+    isLoop: false,
     idx: 0,
     direction: 1,
     duration: 0,
@@ -23,6 +24,7 @@ const usePlayerStore = create((set, get) => ({
     setCurrentTime: (time) => get().player.setCurrentTime(time),
     getCurrentTime: () => get().player.getCurrentTime(),
     getDuration: () => get().player.getDuration(),
+    toggleLoop: () => get().player.toggleLoop(),
 
 
     // idx

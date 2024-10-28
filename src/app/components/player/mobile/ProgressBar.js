@@ -9,7 +9,7 @@ const ProgressBar = ({color, idx}) => {
 
 
     // store
-    const {setCurrentTime, getCurrentTime, getDuration} = usePlayerStore()
+    const {setCurrentTime, getCurrentTime, getDuration, isLoaded} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
 
 
@@ -28,7 +28,10 @@ const ProgressBar = ({color, idx}) => {
         setX(-hh)
     }
     const calculate = (e) => {
-        const {clientX} = e
+        let clientX = 0
+
+        if(e.touches === undefined) clientX = e.clientX
+        else clientX = e.touches[0].clientX
 
         const {width, left} = sliderRef.current.getBoundingClientRect()
         const rx = clientX - left
@@ -57,17 +60,17 @@ const ProgressBar = ({color, idx}) => {
         setX(nx)
         setValue(nv)
     }
-    const onMousedown = (e) => {
+    const onTouchstart = (e) => {
         e.preventDefault()
 
         isDraggable.current = true
     }
-    const onMouseup = (e) => {
+    const onTouchend = (e) => {
         e.preventDefault()
 
         isDraggable.current = false
     }
-    const onMousemove = (e) => {
+    const onTouchmove = (e) => {
         e.preventDefault()
         
         if(!isDraggable.current) return
@@ -75,7 +78,7 @@ const ProgressBar = ({color, idx}) => {
 
         calculate(e)
     }
-    const onClick = (e) => {
+    const onTouch = (e) => {
         e.preventDefault()
 
         if(sliderRef.current === null) return
@@ -92,12 +95,7 @@ const ProgressBar = ({color, idx}) => {
     const test = (e) => {
         e.preventDefault()
 
-        console.log('mouse up mobile')
-    }
-    const test2 = (e) => {
-        e.preventDefault()
-
-        console.log('touch end mobile')
+        console.log('touch event mobile')
     }
     const animate = () => {
         update()
@@ -107,16 +105,14 @@ const ProgressBar = ({color, idx}) => {
     const init = () => {
         console.log('mobile event added')
 
-        document.addEventListener('mouseup', onMouseup)
-        document.addEventListener('mousemove', onMousemove)
+        document.addEventListener('touchend', onTouchend)
+        document.addEventListener('touchmove', onTouchmove, {passive: false})
         // document.addEventListener('mouseup', test)
-        // document.addEventListener('touchend', test2)
     }
     const onUnmount = () => {
-        document.removeEventListener('mouseup', onMouseup)
-        document.removeEventListener('mousemove', onMousemove)
+        document.removeEventListener('touchend', onTouchend)
+        document.removeEventListener('touchmove', onTouchmove)
         // document.removeEventListener('mouseup', test)
-        // document.removeEventListener('touchend', test2)
     }
     useEffect(() => {
         init()
@@ -135,7 +131,7 @@ const ProgressBar = ({color, idx}) => {
             className={progressBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} pointerdown={onTouchstart} pointerup={isLoaded ? onTouch : () => {}}/>
 
         </div>
     )

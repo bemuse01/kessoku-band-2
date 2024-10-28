@@ -10,10 +10,10 @@ const Slider = ({
         thumbScale, 
         isThumbHover = false, 
         sliderRef,
-        mouseenter = () => {},
-        mouseleave = () => {},
-        mousedown = () => {},
-        click = () => {}
+        pointerenter = () => {},
+        pointerleave = () => {},
+        pointerdown = () => {},
+        pointerup = () => {}
     }) => {
     // 
     const [scaleY, setScaleY] = useState(1)
@@ -82,38 +82,40 @@ const Slider = ({
 
 
     // event
-    const onMouseenter = (e) => {
+    const onPointerenter = (e) => {
         e.preventDefault()
 
-        mouseenter(e)
+        pointerenter(e)
         setScaleY(2)
         if(isThumbHover) setScale(thumbScale)
     }
-    const onMouseleave = (e) => {
+    const onPointerleave = (e) => {
         e.preventDefault()
 
-        mouseleave(e)
+        pointerleave(e)
         setScaleY(1)
         if(isThumbHover) setScale(0)
     }
-    const onMousedown = (e) => {
+    const onPointerdown = (e) => {
         e.preventDefault()
     
-        mousedown(e)
+        pointerdown(e)
     }
-    const onClick = (e) => {
+    // replace pointerup
+    const onPointerup = (e) => {
         e.preventDefault()
-        
-        click(e)
-    }
 
+        pointerup(e)
+    }
+    
 
     return(
         <div
             className={sliderClass}
             style={sliderStyle}
-            onMouseEnter={(e) => onMouseenter(e)}
-            onMouseLeave={(e) => onMouseleave(e)}
+            onPointerEnter={e => onPointerenter(e)}
+            onPointerLeave={e => onPointerleave(e)}
+            onPointerUp={e => onPointerup(e)}
         >
 
             <div
@@ -125,8 +127,7 @@ const Slider = ({
                     className={sliderTrackClass}
                     style={sliderTrackStyle}
                     ref={sliderRef}
-                    onClick={(e) => onClick(e)}
-                    onMouseDown={(e) => onMousedown(e)}
+                    onPointerDown={e => onPointerdown(e)}
                 >
                 </div>
 
@@ -144,7 +145,7 @@ const Slider = ({
                 <div
                     className={sliderThumbClass}
                     style={sliderThumbStyle}
-                    onMouseDown={(e) => onMousedown(e)}
+                    onPointerDown={e => onPointerdown(e)}
                 >
                     <div
                         className={sliderThumbChildClass}

@@ -5,9 +5,6 @@ import { clamp, normalize } from '@/utils/math'
 
 
 const VolumeBar = ({color, setIsHoldingBar}) => {
-    const isFirstRender = useRef({player: true, render: true})
-
-
     // store
     const {setVolume, getVolume} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
@@ -76,11 +73,6 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
     }
 
     useEffect(() => {
-        if(isFirstRender.current.player){
-            isFirstRender.current.player = false
-            return
-        }
-
         if(player !== null){
             initVolumeBar()
         }
@@ -90,15 +82,17 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
 
     // on render
     const init = () => {
-        document.addEventListener('mouseup', (e) => onMouseup(e))
-        document.addEventListener('mousemove', (e) => onMousemove(e))
+        document.addEventListener('pointerup', onMouseup)
+        document.addEventListener('pointermove', onMousemove)
+    }
+    const onUnmount = () => {
+        document.removeEventListener('pointerup', onMouseup)
+        document.removeEventListener('pointermove', onMousemove)
     }
     useEffect(() => {
-        if(isFirstRender.current.render){
-            init()
+        init()
 
-            isFirstRender.current.render = false
-        }
+        return () => onUnmount()
     }, [])
 
 
@@ -107,7 +101,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
             className={volumeBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} sliderRef={sliderRef} pointerdown={onMousedown} pointerup={onClick}/>
 
         </div>
     )

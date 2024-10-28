@@ -2,7 +2,7 @@ import Button from '@/components/public/Button'
 import ListShape from '@/components/shapes/ListShape'
 
 
-const ListButton = ({color, onClick}) => {
+const ListButton = ({color, pointerup}) => {
     const ListButtonClass = 'control-list-button aspect-square h-full flex justify-center items-center'
 
     // button
@@ -20,7 +20,7 @@ const ListButton = ({color, onClick}) => {
 
             <Button
                 className={buttonClass}
-                onClick={onClick}
+                pointerup={pointerup}
             >
 
                 <ListShape color={color}/>

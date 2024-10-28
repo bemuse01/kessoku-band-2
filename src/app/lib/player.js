@@ -60,6 +60,9 @@ export default class{
     getCurrentTime(){
         return this.audio.currentTime
     }
+    getLoop(){
+        return this.audio.loop
+    }
 
 
     // action
@@ -74,6 +77,10 @@ export default class{
     change(src){
         this.setSrc(src)
         // this.set({isLoaded: false})
+    }
+    toggleLoop(){
+        this.audio.loop = !this.audio.loop
+        this.set({isLoop: this.audio.loop})
     }
 
 

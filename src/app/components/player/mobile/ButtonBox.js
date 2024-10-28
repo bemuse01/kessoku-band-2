@@ -3,18 +3,20 @@ import useStateStore from '@/store/stateStore'
 import PlayButton from './PlayButton'
 import NextButton from './NextButton'
 import PrevButton from './PrevButton'
-import VolumeArea from './VolumeArea'
 import ListButton from './ListButton'
 import ButtonWrapper from './ButtonWrapper'
 import useColor from '@/app/hooks/useColor'
 import { alphaToHex } from '@/utils/color'
+import LoopButton from './LoopButton'
+import { useEffect } from 'react'
 
 
 const ButtonBox = ({data, index, idx}) => {
     // store
-    const {play, pause, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
+    const {play, pause, increaseIdx, decreaseIdx, setDirection, toggleLoop} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
     const isLoaded = usePlayerStore(state => state.isLoaded)
+    const isLoop = usePlayerStore(state => state.isLoop)
     const {toggleIsListOpen} = useStateStore()
     
 
@@ -41,6 +43,7 @@ const ButtonBox = ({data, index, idx}) => {
 
     // button event
     const playMusic = () => {
+        console.log('work')
         if(!isLoaded) return
         if(isPlaying) pause()
         else play()
@@ -60,6 +63,9 @@ const ButtonBox = ({data, index, idx}) => {
     const openList = () => {
         toggleIsListOpen()
     }
+    const loopMusic = () => {
+        toggleLoop()
+    }
 
 
     return(
@@ -69,17 +75,17 @@ const ButtonBox = ({data, index, idx}) => {
         >
 
             <ButtonWrapper className={'flex-row'}>
-                <ListButton color={color} onClick={openList} />
+                <ListButton color={color} pointerup={openList} />
             </ButtonWrapper>
             
             <ButtonWrapper className={'justify-center items-center gap-[5%]'}>
-                <PrevButton color={color} onClick={prevMusic} />
-                <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
-                <NextButton color={color} onClick={nextMusic} />
+                <PrevButton color={color} pointerup={prevMusic} />
+                <PlayButton color={color} pointerup={playMusic} isPlaying={isPlaying} />
+                <NextButton color={color} pointerup={nextMusic} />
             </ButtonWrapper>
 
             <ButtonWrapper className={'flex-row-reverse'}>
-                <VolumeArea color={color} />
+                <LoopButton color={color} pointerup={loopMusic} isLoop={isLoop}/>
             </ButtonWrapper>
 
         </div>

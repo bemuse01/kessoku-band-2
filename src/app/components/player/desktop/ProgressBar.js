@@ -5,11 +5,8 @@ import { clamp, normalize } from '@/utils/math'
 
 
 const ProgressBar = ({color, idx}) => {
-    const isFirstRender = useRef({player: true, render: true})
-
-
     // store
-    const {setCurrentTime, getCurrentTime, getDuration} = usePlayerStore()
+    const {setCurrentTime, getCurrentTime, getDuration, isLoaded} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
 
 
@@ -102,13 +99,13 @@ const ProgressBar = ({color, idx}) => {
     const init = () => {
         console.log('desktop event added')
 
-        document.addEventListener('mouseup', onMouseup)
-        document.addEventListener('mousemove', onMousemove)
+        document.addEventListener('pointerup', onMouseup)
+        document.addEventListener('pointermove', onMousemove)
         // document.addEventListener('mouseup', test)
     }
     const onUnmount = () => {
-        document.removeEventListener('mouseup', onMouseup)
-        document.removeEventListener('mousemove', onMousemove)
+        document.removeEventListener('pointerup', onMouseup)
+        document.removeEventListener('pointermove', onMousemove)
         // document.removeEventListener('mouseup', test)
     }
     useEffect(() => {
@@ -128,7 +125,7 @@ const ProgressBar = ({color, idx}) => {
             className={progressBarClass}
         >
 
-            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} mousedown={onMousedown} click={onClick}/>
+            <Slider color={color} value={value} x={x} height={height} thumbScale={thumbScale} isThumbHover={true} sliderRef={sliderRef} pointerdown={onMousedown} pointerup={isLoaded ? onClick : () => {}}/>
 
         </div>
     )

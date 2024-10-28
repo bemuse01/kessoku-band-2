@@ -3,7 +3,7 @@ import PlayShape from '@/components/shapes/PlayShape'
 import PauseShape from '@/components/shapes/PauseShape'
 
 
-const PlayButton = ({color, onClick, isPlaying}) => {
+const PlayButton = ({color, pointerup, isPlaying}) => {
     const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center pl-[2px]'
     // const playButtonClass = 'control-play-button aspect-square h-full flex justify-center items-center'
 
@@ -22,7 +22,7 @@ const PlayButton = ({color, onClick, isPlaying}) => {
 
             <Button
                 className={buttonClass}
-                onClick={onClick}
+                pointerup={pointerup}
             >
                 {
                     isPlaying ?

@@ -69,13 +69,13 @@ const ButtonBox = ({data, index, idx}) => {
         >
 
             <ButtonWrapper className={'flex-row'}>
-                <ListButton color={color} onClick={openList} />
+                <ListButton color={color} pointerup={openList} />
             </ButtonWrapper>
             
             <ButtonWrapper className={'justify-center items-center gap-[5%]'}>
-                <PrevButton color={color} onClick={prevMusic} />
-                <PlayButton color={color} onClick={playMusic} isPlaying={isPlaying} />
-                <NextButton color={color} onClick={nextMusic} />
+                <PrevButton color={color} pointerup={prevMusic} />
+                <PlayButton color={color} pointerup={playMusic} isPlaying={isPlaying} />
+                <NextButton color={color} pointerup={nextMusic} />
             </ButtonWrapper>
 
             <ButtonWrapper className={'flex-row-reverse'}>

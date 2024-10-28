@@ -2,7 +2,7 @@ import Button from '@/components/public/Button'
 import VolumeShape from '@/components/shapes/VolumeShape'
 
 
-const VolumeButton = ({color, onClick, mouseenter, mouseleave}) => {
+const VolumeButton = ({color, pointerup, mouseenter, mouseleave}) => {
     const volumeButtonClass = 'control-volume-button aspect-square h-full flex justify-center items-center'
 
     // button
@@ -22,7 +22,7 @@ const VolumeButton = ({color, onClick, mouseenter, mouseleave}) => {
 
             <Button
                 className={buttonClass}
-                onClick={onClick}
+                pointerup={pointerup}
             >
 
                 <VolumeShape color={color}/>
