@@ -30,7 +30,7 @@ const PlayerContainer = () => {
         const id = index[idx]
         const src = getDataById(id).media_file
 
-        setPlayer()
+        setPlayer(data, index)
         change(src)
     }
     const changeByIdx = () => {
