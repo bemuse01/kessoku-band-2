@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 import PlayerBox from './PlayerBox'
@@ -13,9 +13,6 @@ import PlayerWrapper from './PlayerWrapper'
 
 
 const PlayerContainer = () => {
-    const isFirstRender = useRef({effect1: true, effect2: true})
-
-
     // store
     const data = useDataStore(state => state.data)
     const index = useDataStore(state => state.index)
@@ -36,18 +33,13 @@ const PlayerContainer = () => {
         setPlayer()
         change(src)
     }
-    const changeByData = () => {
+    const changeByIdx = () => {
         const id = index[idx]
         const media_file = getDataById(id).media_file
         change(media_file)
     }
 
     useEffect(() => {
-        if(isFirstRender.current.effect1){
-            isFirstRender.current.effect1 = false
-            return
-        }
-
         if(data !== null && index !== null){
             initPlayer()
         }
@@ -55,13 +47,8 @@ const PlayerContainer = () => {
     }, [data, index])
 
     useEffect(() => {
-        if(isFirstRender.current.effect2){
-            isFirstRender.current.effect2 = false
-            return
-        }
-
         if(player !== null){
-            changeByData()
+            changeByIdx()
         }
 
     }, [player, idx])

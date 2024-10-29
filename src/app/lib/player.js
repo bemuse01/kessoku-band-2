@@ -1,8 +1,12 @@
 export default class{
-    constructor(set){
+    constructor({set, get, data, index}){
         this.audio = null
         this.loaded = false
         this.set = set
+        this.get = get
+        this.data = data
+        this.index = index
+        this.isEnd = false
 
         this.init()
     }
@@ -76,7 +80,6 @@ export default class{
     }
     change(src){
         this.setSrc(src)
-        // this.set({isLoaded: false})
     }
     toggleLoop(){
         this.audio.loop = !this.audio.loop
@@ -102,9 +105,18 @@ export default class{
         this.set({isLoaded: true})
         this.set({duration: this.getDuration()})
         this.setLoaded(true)
+
+        if(this.isEnd && !this.audio.loop){
+            this.play()
+        }
+        
+        this.isEnd = false
     }
+    // end
     onEnd(){
         this.set({isPlaying: false})
+        this.isEnd = true
+        if(!this.audio.loop) this.get().increaseIdx(this.data.length - 1)
     }
     onPlay(){
         this.set({isPlaying: true})
