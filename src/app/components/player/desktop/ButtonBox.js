@@ -7,14 +7,16 @@ import VolumeArea from './VolumeArea'
 import ListButton from './ListButton'
 import ButtonWrapper from './ButtonWrapper'
 import useColor from '@/app/hooks/useColor'
+import LoopButton from './LoopButton'
 
 
 const ButtonBox = ({data, index, idx}) => {
     // store
-    const {play, pause, increaseIdx, decreaseIdx, setDirection} = usePlayerStore()
+    const {play, pause, increaseIdx, decreaseIdx, setDirection, toggleLoop} = usePlayerStore()
     const isPlaying = usePlayerStore(state => state.isPlaying)
     const isLoaded = usePlayerStore(state => state.isLoaded)
     const {toggleIsListOpen} = useStateStore()
+    const isLoop = usePlayerStore(state => state.isLoop)
     
 
     // main color
@@ -57,6 +59,9 @@ const ButtonBox = ({data, index, idx}) => {
     const openList = () => {
         toggleIsListOpen()
     }
+    const loopMusic = () => {
+        toggleLoop()
+    }
 
 
     return(
@@ -76,6 +81,7 @@ const ButtonBox = ({data, index, idx}) => {
             </ButtonWrapper>
 
             <ButtonWrapper className={'flex-row-reverse'}>
+                <LoopButton color={color} pointerup={loopMusic} isLoop={isLoop}/>
                 <VolumeArea color={color} />
             </ButtonWrapper>
 

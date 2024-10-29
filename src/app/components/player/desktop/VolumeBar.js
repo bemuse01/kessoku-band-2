@@ -10,7 +10,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
     const player = usePlayerStore(state => state.player)
 
 
-    const volumeBarClass = 'volume-bar w-full h-full flex justify-center items-center absolute p-[6px]'
+    const volumeBarClass = 'volume-bar w-full h-full flex justify-center items-center absolute'
 
 
     // volume
