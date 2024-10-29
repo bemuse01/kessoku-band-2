@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react' 
 import useDataStore from '@/store/dataStore'
-// import usePlayerStore from '@/store/playerStore'
-import { alphaToHex } from '@/utils/color'
 import useColor from '@/app/hooks/useColor'
+// import usePlayerStore from '@/store/playerStore'
 
 
 const InfoBox = ({data, index, idx}) => {
@@ -28,7 +27,6 @@ const InfoBox = ({data, index, idx}) => {
     ].join(' ')
     const infoBoxStyle = {
         color,
-        filter: `drop-shadow(0 0 6px ${color + alphaToHex(0.5)})`
     }
     const infoClass = 'info w-full h-auto relative flex flex-col px-[6px]'
 

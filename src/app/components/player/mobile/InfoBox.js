@@ -28,7 +28,6 @@ const InfoBox = ({data, index, idx}) => {
     ].join(' ')
     const infoBoxStyle = {
         color,
-        filter: `drop-shadow(0 0 6px ${color + alphaToHex(0.5)})`
     }
     const infoClass = 'info w-full h-auto relative flex flex-col px-[6px]'
 

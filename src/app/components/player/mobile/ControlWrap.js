@@ -1,13 +1,15 @@
-import { PLAYER_BORDER_VALUE } from '@/config/style'
+import { PLAYER_BORDER_VALUE, DROP_SHADOW_WRAP_ALPHA, DROP_SHADOW_WRAP_BLUR } from '@/config/style'
 import ButtonBox from './ButtonBox'
 import InfoBox from './InfoBox'
 import ProgressBox from './ProgressBox'
 import useMainData from '@/app/hooks/useMainData'
+import useColor from '@/app/hooks/useColor'
 
 
 const ControlWrap = () => {
     // store
     const {data, index, idx, player} = useMainData()
+    const {originalColor} = useColor({data, index, idx})
 
 
     // 
@@ -21,7 +23,8 @@ const ControlWrap = () => {
         'bg-white',
     ].join(' ')
     const controlWrapStyle = {
-        borderRadius: `${PLAYER_BORDER_VALUE}px ${PLAYER_BORDER_VALUE}px 0 0`
+        borderRadius: `${PLAYER_BORDER_VALUE}px ${PLAYER_BORDER_VALUE}px 0 0`,
+        filter: `drop-shadow(0 0 ${DROP_SHADOW_WRAP_BLUR} ${originalColor + DROP_SHADOW_WRAP_ALPHA})`
     }
 
     const controlBoxClass = 'w-full h-auto relative px-[8px] py-[14px] flex flex-col gap-[8px]'

@@ -7,7 +7,6 @@ import VolumeArea from './VolumeArea'
 import ListButton from './ListButton'
 import ButtonWrapper from './ButtonWrapper'
 import useColor from '@/app/hooks/useColor'
-import { alphaToHex } from '@/utils/color'
 
 
 const ButtonBox = ({data, index, idx}) => {
@@ -29,13 +28,11 @@ const ButtonBox = ({data, index, idx}) => {
         'flex',
         'flex-row',
         'relative',
-        'drop-shadow-[0_0_8px_rgba(0,0,0,0.25)]',
         'gap-[2.5%]',
         'h-[45px] max-lg:h-[40px] max-md:h-[35px]'
     ].join(' ')
     const buttonBoxStyle = {
         color,
-        filter: `drop-shadow(0 0 6px ${color + alphaToHex(0.5)})`
     }
 
 
