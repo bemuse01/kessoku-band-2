@@ -27,7 +27,7 @@ const ControlWrap = () => {
         filter: `drop-shadow(0 0 ${DROP_SHADOW_WRAP_BLUR} ${originalColor + DROP_SHADOW_WRAP_ALPHA})`
     }
 
-    const controlBoxClass = 'w-full h-auto relative px-[8px] py-[14px] flex flex-col gap-[8px]'
+    const controlBoxClass = 'w-full h-full relative px-[8px] py-[14px] flex flex-col gap-[8px]'
 
 
     return(

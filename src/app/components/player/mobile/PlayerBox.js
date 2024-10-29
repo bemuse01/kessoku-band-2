@@ -7,6 +7,7 @@ const PlayerBox = ({children}) => {
         'bottom-0',
         'flex',
         'flex-col',
+        'items-center'
     ].join(' ')
 
 

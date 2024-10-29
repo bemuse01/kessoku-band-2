@@ -7,9 +7,6 @@ import ControlWrap from './ControlWrap'
 import RecordWrap from './RecordWrap'
 import ListWrap from './ListWrap'
 import BgWrap from './BgWrap'
-import PlayerWrapper from './PlayerWrapper'
-// import LoadingContainer from '@/components/loading/LoadingContainer'
-// import { PLAYER_BORDER_VALUE } from '@/config/style'
 import { AnimatePresence, motion } from 'framer-motion'
 import useStateStore from '@/store/stateStore'
 
@@ -58,18 +55,36 @@ const PlayerContainer = () => {
     }, [player, idx])
 
 
-    // list
-    const listAnimClass = 'list-anim w-full flex-1 relative'
-    const animVariants = {
+    // wrapper
+    const playerWrapperClass  = 'player-wrapper w-full flex-1 flex flex-col items-center overflow-hidden'
+    const wrapperVariants = {
         initial: {
-            flexGrow: 0
+            height: '0%'
         },
         animate: {
-            flexGrow: 1
+            height: '100%'
         },
         exit: {
-            y: '100%',
-            flexGrow: 1
+            height: '0%'
+        },
+        transition: {
+            duration: 0.3,
+            ease: 'easeInOut'
+        }
+    }
+
+
+    // list
+    const listAnimClass = 'list-anim w-full flex-1 relative overflow-hidden'
+    const animVariants = {
+        initial: {
+            height: '0%'
+        },
+        animate: {
+            height: '100%'
+        },
+        exit: {
+            height: '0%'
         },
         transition: {
             duration: 0.3,
@@ -89,14 +104,23 @@ const PlayerContainer = () => {
                         
                     <BgWrap />
 
-                    <PlayerWrapper className={'flex-col relative'}>
+                    {!isListOpen && 
+                        <motion.div 
+                            className={playerWrapperClass}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            transition="transition"
+                            variants={wrapperVariants}
+                        >
 
-                        <RecordWrap />
+                            <RecordWrap />
 
-                        <ThumbWrap />
+                            <ThumbWrap />
 
-                    </PlayerWrapper>
-                
+                        </motion.div>
+                    }
+                    
                     <ControlWrap />
                         
                     {isListOpen && 
@@ -111,13 +135,6 @@ const PlayerContainer = () => {
                             <ListWrap />
                         </motion.div>
                     }
-
-                    {/* <LoadingContainer 
-                        isLoading={true} 
-                        reverse={true} 
-                        opactity={0.6} 
-                        styleConfig={{borderRadius: `${PLAYER_BORDER_VALUE}px`}}
-                    /> */}
 
                 </PlayerBox>
 

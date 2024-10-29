@@ -7,7 +7,7 @@ const ListItem = ({order, title, artist, color, idx}) => {
     
 
     // list item
-    const listItem = 'list-item w-full h-auto  flex flex-col p-[10px] cursor-pointer'
+    const listItem = 'list-item w-full h-auto flex flex-col p-[10px] cursor-pointer'
     const [background, setBackground] = useState('transparent')
     const listItemStyle = {
         borderRadius: '6px',

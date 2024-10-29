@@ -1,10 +1,9 @@
 import { create } from 'zustand'
-import { isMobileDevice } from '@/utils/helper'
 
 
 const useStateStore = create((set, get) => ({
     isListOpen: false,
-    isMobile: isMobileDevice(),
+    isMobile: false,
 
 
     // list

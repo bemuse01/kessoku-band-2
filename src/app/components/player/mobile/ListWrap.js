@@ -8,7 +8,7 @@ const ListWrap = () => {
 
 
     // list wrap
-    const listWrapClass = 'list-wrap w-full h-full relative bg-white'
+    const listWrapClass = 'list-wrap w-full h-full absolute bg-white'
 
 
     return(
