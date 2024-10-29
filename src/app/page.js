@@ -21,7 +21,7 @@ const Home = () => {
     
 
     // home
-    const homeClass = 'app w-screen h-screen absolute'
+    const homeClass = 'app w-full h-full absolute'
 
 
     // data

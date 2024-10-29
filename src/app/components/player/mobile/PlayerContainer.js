@@ -26,7 +26,8 @@ const PlayerContainer = () => {
 
 
     // player container
-    const PlayerContClass = 'player-container w-screen h-screen absolute flex justify-center items-center'
+    const playerContClass = 'player-container w-full h-full absolute flex justify-center items-center'
+
 
     // player
     const initPlayer = () => {
@@ -79,7 +80,7 @@ const PlayerContainer = () => {
 
     return(
         <div
-            className={PlayerContClass}
+            className={playerContClass}
         >
 
             <AnimatePresence>
