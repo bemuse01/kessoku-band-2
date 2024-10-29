@@ -86,27 +86,18 @@ const ProgressBar = ({color, idx}) => {
 
 
     // on render
-    const test = (e) => {
-        e.preventDefault()
-
-        console.log('touch event desktop')
-    }
     const animate = () => {
         update()
 
         requestAnimationFrame(animate)
     }
     const init = () => {
-        console.log('desktop event added')
-
         document.addEventListener('pointerup', onMouseup)
         document.addEventListener('pointermove', onMousemove)
-        // document.addEventListener('mouseup', test)
     }
     const onUnmount = () => {
         document.removeEventListener('pointerup', onMouseup)
         document.removeEventListener('pointermove', onMousemove)
-        // document.removeEventListener('mouseup', test)
     }
     useEffect(() => {
         init()

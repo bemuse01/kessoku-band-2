@@ -35,6 +35,7 @@ export default class{
         this.audio.src = src
     }
     setCurrentTime(time){
+        if(isNaN(time)) return
         this.audio.currentTime = time
     }
     setVolume(volume){
@@ -109,7 +110,7 @@ export default class{
         if(this.isEnd && !this.audio.loop){
             this.play()
         }
-        
+
         this.isEnd = false
     }
     // end

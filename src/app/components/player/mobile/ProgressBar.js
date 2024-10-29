@@ -87,27 +87,18 @@ const ProgressBar = ({color, idx}) => {
 
 
     // on render
-    const test = (e) => {
-        e.preventDefault()
-
-        console.log('touch event mobile')
-    }
     const animate = () => {
         update()
 
         requestAnimationFrame(animate)
     }
     const init = () => {
-        console.log('mobile event added')
-
         document.addEventListener('touchend', onTouchend)
         document.addEventListener('touchmove', onTouchmove, {passive: true})
-        // document.addEventListener('mouseup', test)
     }
     const onUnmount = () => {
         document.removeEventListener('touchend', onTouchend)
         document.removeEventListener('touchmove', onTouchmove, {passive: true})
-        // document.removeEventListener('mouseup', test)
     }
     useEffect(() => {
         init()
