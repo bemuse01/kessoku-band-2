@@ -1,5 +1,5 @@
 import Button from '@/components/public/Button'
-import ListShape from '@/components/shapes/ListShape'
+import ListShape from '@/components/shapes/ListShape.js'
 
 
 const ListButton = ({color, pointerup}) => {

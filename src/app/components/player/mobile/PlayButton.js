@@ -1,6 +1,6 @@
 import Button from '@/components/public/Button'
-import PlayShape from '@/components/shapes/PlayShape'
-import PauseShape from '@/components/shapes/PauseShape'
+import PlayShape from '@/components/shapes/PlayShape.js'
+import PauseShape from '@/components/shapes/PauseShape.js'
 
 
 const PlayButton = ({color, pointerup, isPlaying}) => {

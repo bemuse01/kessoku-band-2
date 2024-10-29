@@ -1,5 +1,5 @@
 import Button from '@/components/public/Button'
-import VolumeShape from '@/components/shapes/VolumeShape'
+import VolumeShape from '@/components/shapes/VolumeShape.js'
 
 
 const VolumeButton = ({color, pointerup, mouseenter, mouseleave}) => {
