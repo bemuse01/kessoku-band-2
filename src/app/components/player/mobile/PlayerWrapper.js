@@ -5,7 +5,7 @@ const PlayerWrapper = ({data, index, idx, children, className = ''}) => {
     const {originalColor} = useColor({data, index, idx})
 
 
-    const playerWrapperClass  = 'player-wrapper w-full flex-1 flex relative ' + className
+    const playerWrapperClass  = 'player-wrapper w-full flex-1 flex ' + className
     const playerWrapperStyle = {
         filter: `drop-shadow(0 0 20px ${originalColor + 'cc'})`
     }

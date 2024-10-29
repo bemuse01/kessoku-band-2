@@ -7,7 +7,7 @@ import ListItem from './ListItem'
 
 const ListScroll = ({items, color, idx}) => {
     // list scroll
-    const listScrollClass = 'list-scroll w-[50%] h-full absolute p-[8px]'
+    const listScrollClass = 'list-scroll w-full h-full absolute py-[8px] pl-[8px]'
 
 
     // list

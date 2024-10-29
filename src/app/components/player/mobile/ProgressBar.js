@@ -58,18 +58,16 @@ const ProgressBar = ({color, idx}) => {
         setValue(nv)
     }
     const onTouchstart = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
         isDraggable.current = true
     }
     const onTouchend = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
         isDraggable.current = false
     }
     const onTouchmove = (e) => {
-        e.preventDefault()
-        
         if(!isDraggable.current) return
         if(sliderRef.current === null) return
 
@@ -103,12 +101,12 @@ const ProgressBar = ({color, idx}) => {
         console.log('mobile event added')
 
         document.addEventListener('touchend', onTouchend)
-        document.addEventListener('touchmove', onTouchmove, {passive: false})
+        document.addEventListener('touchmove', onTouchmove, {passive: true})
         // document.addEventListener('mouseup', test)
     }
     const onUnmount = () => {
         document.removeEventListener('touchend', onTouchend)
-        document.removeEventListener('touchmove', onTouchmove)
+        document.removeEventListener('touchmove', onTouchmove, {passive: true})
         // document.removeEventListener('mouseup', test)
     }
     useEffect(() => {

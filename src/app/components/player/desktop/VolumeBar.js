@@ -58,7 +58,7 @@ const VolumeBar = ({color, setIsHoldingBar}) => {
     }
     const onMousemove = (e) => {
         e.preventDefault()
-        
+
         if(!isDraggable.current) return
         if(sliderRef.current === null) return
 

@@ -18,7 +18,7 @@ const BgWrap = () => {
 
 
     // bg frame
-    const bgFrameClass = 'bg-frame w-full h-full absolute bg-[rgba(0,0,0,0.3)]'
+    // const bgFrameClass = 'bg-frame w-full h-full absolute bg-[rgba(0,0,0,0.0)]'
 
 
     return(
@@ -32,10 +32,10 @@ const BgWrap = () => {
                 <ImageComp url={url} />
             </div>
 
-            <div
+            {/* <div
                 className={bgFrameClass}
             >
-            </div>
+            </div> */}
 
         </div>
     )

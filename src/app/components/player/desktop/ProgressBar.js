@@ -64,9 +64,9 @@ const ProgressBar = ({color, idx}) => {
 
         isDraggable.current = false
     }
-    const onMousemove = (e) => {
+    const onMousemove = (e) => {     
         e.preventDefault()
-        
+
         if(!isDraggable.current) return
         if(sliderRef.current === null) return
 

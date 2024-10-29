@@ -22,20 +22,6 @@ const ListItem = ({order, title, artist, color, idx}) => {
 
 
     // event
-    const onMouseenter = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        
-        setBackground(color + '22')
-    }
-    const onMouseleave = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-
-        if(idx === order) return
-        
-        setBackground('transparent')
-    }
     const onClick = (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -55,9 +41,7 @@ const ListItem = ({order, title, artist, color, idx}) => {
         <div
             className={listItem}
             style={listItemStyle}
-            onMouseEnter={e => onMouseenter(e)}
-            onMouseLeave={e => onMouseleave(e)}
-            onClick={e => onClick(e)}
+            onPointerUp={e => onClick(e)}
         >
 
             <div
