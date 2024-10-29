@@ -1,5 +1,5 @@
 import Button from '@/components/public/Button'
-import NextShape from '@/components/shapes/NextShape.js'
+import NextShape from '@/components/shapes/NextShape'
 
 
 const PrevButton = ({color, pointerup}) => {

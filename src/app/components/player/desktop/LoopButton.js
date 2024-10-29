@@ -1,6 +1,6 @@
 import Button from '@/components/public/Button'
-import LoopShape from '@/components/shapes/LoopShape.js'
-import UnloopShape from '@/components/shapes/UnloopShape.js'
+import LoopShape from '@/components/shapes/LoopShape'
+import UnloopShape from '@/components/shapes/UnloopShape'
 
 
 const LoopButton = ({color, pointerup, isLoop}) => {
