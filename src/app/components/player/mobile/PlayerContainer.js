@@ -7,7 +7,6 @@ import ControlWrap from './ControlWrap'
 import RecordWrap from './RecordWrap'
 import ListWrap from './ListWrap'
 import BgWrap from './BgWrap'
-import { AnimatePresence, motion } from 'framer-motion'
 import useStateStore from '@/store/stateStore'
 
 
@@ -68,39 +67,35 @@ const PlayerContainer = () => {
             className={playerContClass}
         >
 
-            <AnimatePresence>
-
-                <PlayerBox>
-                        
-                    <BgWrap />
-
-                    {!isListOpen && 
-                        <div 
-                            className={playerWrapperClass}
-                        >
-
-                            <RecordWrap />
-
-                            <ThumbWrap />
-
-                        </div>
-                    }
+            <PlayerBox>
                     
-                    <ControlWrap />
-                        
-                    {isListOpen && 
-                        <div
-                            className={listWrapperClass}
-                        >
+                <BgWrap />
 
-                            <ListWrap />
-                            
-                        </div>
-                    }
+                {!isListOpen && 
+                    <div 
+                        className={playerWrapperClass}
+                    >
 
-                </PlayerBox>
+                        <RecordWrap />
 
-            </AnimatePresence>
+                        <ThumbWrap />
+
+                    </div>
+                }
+                
+                <ControlWrap />
+                    
+                {isListOpen && 
+                    <div
+                        className={listWrapperClass}
+                    >
+
+                        <ListWrap />
+
+                    </div>
+                }
+
+            </PlayerBox>
 
         </div>
     )
