@@ -57,40 +57,10 @@ const PlayerContainer = () => {
 
     // wrapper
     const playerWrapperClass  = 'player-wrapper w-full flex-1 flex flex-col items-center overflow-hidden'
-    const wrapperVariants = {
-        initial: {
-            height: '0%'
-        },
-        animate: {
-            height: '100%'
-        },
-        exit: {
-            height: '0%'
-        },
-        transition: {
-            duration: 0.3,
-            ease: 'easeInOut'
-        }
-    }
 
 
     // list
-    const listAnimClass = 'list-anim w-full flex-1 relative overflow-hidden'
-    const animVariants = {
-        initial: {
-            height: '0%'
-        },
-        animate: {
-            height: '100%'
-        },
-        exit: {
-            height: '0%'
-        },
-        transition: {
-            duration: 0.3,
-            ease: 'easeInOut'
-        }
-    }
+    const listWrapperClass = 'list-wrapper w-full flex-1 relative overflow-hidden'
 
 
     return(
@@ -105,35 +75,27 @@ const PlayerContainer = () => {
                     <BgWrap />
 
                     {!isListOpen && 
-                        <motion.div 
+                        <div 
                             className={playerWrapperClass}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            transition="transition"
-                            variants={wrapperVariants}
                         >
 
                             <RecordWrap />
 
                             <ThumbWrap />
 
-                        </motion.div>
+                        </div>
                     }
                     
                     <ControlWrap />
                         
                     {isListOpen && 
-                        <motion.div
-                            className={listAnimClass}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            transition="transition"
-                            variants={animVariants}
+                        <div
+                            className={listWrapperClass}
                         >
+
                             <ListWrap />
-                        </motion.div>
+                            
+                        </div>
                     }
 
                 </PlayerBox>
