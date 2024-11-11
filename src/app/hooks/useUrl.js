@@ -15,7 +15,7 @@ const useUrl = ({data, index, idx}) => {
         const newUrl = getDataById(id).thumbnail
         setUrl(newUrl)
 
-        console.log(url, oldUrl, idx)
+        // console.log(url, oldUrl, idx)
     }
 
     useEffect(() => {

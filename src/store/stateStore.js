@@ -8,6 +8,9 @@ const useStateStore = create((set, get) => ({
 
     // list
     toggleIsListOpen: () => set(state => ({isListOpen: !state.isListOpen})),
+
+
+    // device
     setIsMobile: (newValue) => set(() => ({isMobile: newValue}))
 }))
 

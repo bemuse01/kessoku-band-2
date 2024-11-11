@@ -8,16 +8,13 @@ import useColor from '@/app/hooks/useColor'
 
 
 const RecordBox = ({data, index, idx}) => {
-    const isFirstRender = useRef(true)
-
-
     // store
     const {url, oldUrl} = useUrl({data, index, idx})
     const direction = usePlayerStore(state => state.direction)
     const {originalColor} = useColor({data, index, idx})
 
 
-    // 
+    // record box
     const [recordSize, setRecordSize] = useState(0)
     const recordBoxClass = 'record-box aspect-square absolute bottom-0'
     const recordBoxStyle = {
@@ -67,14 +64,15 @@ const RecordBox = ({data, index, idx}) => {
     }
     const init = () => {
         setRecordBox()
-        window.addEventListener('resize', () => onResize())
+        window.addEventListener('resize', onResize)
+    }
+    const onUnmount = () => {
+        window.removeEventListener('resize', onResize)
     }
     useEffect(() => {
-        if(isFirstRender.current){
-            isFirstRender.current = false
+        init()
 
-            init()
-        }
+        return () => onUnmount()
     }, [])
 
 

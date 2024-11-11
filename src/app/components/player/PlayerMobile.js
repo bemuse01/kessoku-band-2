@@ -12,7 +12,7 @@ const PlayerMobile = () => {
     const onResize = () => {
         const height = window.innerHeight
 
-        console.log(height)
+        // console.log(height)
 
         setPlayerMobileHeight(height)
     }

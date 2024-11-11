@@ -6,9 +6,6 @@ import useColor from '@/app/hooks/useColor'
 
 
 const InfoBox = ({data, index, idx}) => {
-    const isFirstRender = useRef({effec1: true})
-
-
     // store
     const {getDataById} = useDataStore()
     // const isLoaded = usePlayerStore(state => state.isLoaded)
@@ -56,11 +53,6 @@ const InfoBox = ({data, index, idx}) => {
     }
 
     useEffect(() => {
-        if(isFirstRender.current.effec1){
-            isFirstRender.current.effec1 = false
-            return
-        }
-
         if(data !== null && index !== null){
             setInfo()
         }

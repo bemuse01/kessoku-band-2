@@ -11,9 +11,6 @@ import { SM } from '@/config/viewport'
 
 
 const Home = () => {
-    const isFirstRender = useRef(true)
-
-
     // store
     const {setData, setIndex} = useDataStore()
     const {setIsMobile} = useStateStore()
@@ -62,14 +59,16 @@ const Home = () => {
     }
     const init = () => {
         detectMobile()
-        window.addEventListener('resize', () => onResize())
+
+        window.addEventListener('resize', onResize)
+    }
+    const onUnmount = () => {
+        window.removeEventListener('resize', onResize)
     }
     useEffect(() => {
-        if(isFirstRender.current){
-            isFirstRender.current = false
+        init()
 
-            init()
-        }
+        return () => onUnmount() 
     }, [])
 
 
