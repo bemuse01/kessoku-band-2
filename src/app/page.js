@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import useDataStore from '@/store/dataStore'
 import useStateStore from '@/store/stateStore'
 import useData from '@/swr/dataSwr'
@@ -8,6 +8,8 @@ import LoadingContainer from '@/components/loading/LoadingContainer'
 import PlayerDesktop from './components/player/PlayerDeskop'
 import PlayerMobile from './components/player/PlayerMobile'
 import { SM } from '@/config/viewport'
+import useMainData from './hooks/useMainData'
+import usePlayer from './hooks/usePlayer'
 
 
 const Home = () => {
@@ -15,6 +17,11 @@ const Home = () => {
     const {setData, setIndex} = useDataStore()
     const {setIsMobile} = useStateStore()
     const isMobile = useStateStore(state => state.isMobile)
+
+
+    // hooks
+    const {data, index, idx} = useMainData()
+    usePlayer({data, index, idx})
     
 
     // home
